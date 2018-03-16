@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var mImageLogo: UIImageView!
     @IBOutlet weak var leftConstraint: NSLayoutConstraint!
