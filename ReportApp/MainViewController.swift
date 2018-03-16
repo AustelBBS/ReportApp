@@ -33,6 +33,8 @@ class MainViewController: UIViewController {
         mComments.layer.cornerRadius = 8.0
         mReports.layer.cornerRadius = 8.0
         mSend.layer.cornerRadius = 8.0
+        descriptionInput.isEditable = true
+        descriptionInput.isUserInteractionEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
