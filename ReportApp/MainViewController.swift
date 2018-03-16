@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    //hola
     @IBOutlet weak var mImageLogo: UIImageView!
     @IBOutlet weak var leftConstraint: NSLayoutConstraint!
     @IBOutlet weak var mConfig   : UIButton!
