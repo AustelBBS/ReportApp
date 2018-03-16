@@ -85,9 +85,8 @@
                                     <constraint firstItem="Lyh-eN-1zU" firstAttribute="top" secondItem="47W-b4-vHZ" secondAttribute="top" constant="8" id="wlC-FQ-Egg"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PH6-pA-8fw">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PH6-pA-8fw">
                                 <rect key="frame" x="30" y="82" width="260" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lamp" translatesAutoresizingMaskIntoConstraints="NO" id="geP-gs-9pa">
                                         <rect key="frame" x="70" y="0.0" width="120" height="128"/>
@@ -99,6 +98,9 @@
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99615699052810669" green="0.98098880052566528" blue="0.91275960206985474" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="hUD-Co-SRv"/>
+                                </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="¿Qué más nos puedes decir?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8tL-vB-L2Z">
                                 <rect key="frame" x="30" y="267" width="260" height="128"/>
@@ -131,8 +133,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="47W-b4-vHZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1LK-Pb-9JG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PH6-pA-8fw" secondAttribute="trailing" constant="30" id="Lcu-hu-CWO"/>
+                            <constraint firstItem="PH6-pA-8fw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="RX2-Rw-quO"/>
                             <constraint firstItem="47W-b4-vHZ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="rjf-Qj-F9w"/>
                             <constraint firstItem="47W-b4-vHZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-150" id="tko-5U-YjN"/>
+                            <constraint firstItem="PH6-pA-8fw" firstAttribute="leading" secondItem="47W-b4-vHZ" secondAttribute="trailing" constant="30" id="x0h-7v-CSV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
