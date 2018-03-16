@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gsX-af-QRa">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ReportApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="Container">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47W-b4-vHZ" userLabel="Sidebar">
-                                <rect key="frame" x="0.0" y="64" width="150" height="559"/>
+                                <rect key="frame" x="-150" y="64" width="150" height="460"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2d-L3-d9q">
                                         <rect key="frame" x="8" y="70" width="134" height="30"/>
@@ -35,7 +35,7 @@
                                             <segue destination="X6J-qO-jWH" kind="show" id="sIe-OO-bAv"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Lyh-eN-1zU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logopro" translatesAutoresizingMaskIntoConstraints="NO" id="Lyh-eN-1zU">
                                         <rect key="frame" x="50" y="8" width="50" height="50"/>
                                     </imageView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mS-Ux-dAr">
@@ -85,17 +85,59 @@
                                     <constraint firstItem="Lyh-eN-1zU" firstAttribute="top" secondItem="47W-b4-vHZ" secondAttribute="top" constant="8" id="wlC-FQ-Egg"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PH6-pA-8fw">
+                                <rect key="frame" x="30" y="82" width="260" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lamp" translatesAutoresizingMaskIntoConstraints="NO" id="geP-gs-9pa">
+                                        <rect key="frame" x="70" y="0.0" width="120" height="128"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo-camera" translatesAutoresizingMaskIntoConstraints="NO" id="g4g-EN-UJW">
+                                        <rect key="frame" x="236" y="112" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99615699052810669" green="0.98098880052566528" blue="0.91275960206985474" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="¿Qué más nos puedes decir?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8tL-vB-L2Z">
+                                <rect key="frame" x="30" y="267" width="260" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.71805506944656372" green="0.6872672438621521" blue="0.59428501129150391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            </textView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11c-40-HaU">
+                                <rect key="frame" x="80" y="439" width="160" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.43056803939999999" green="0.77978616950000001" blue="0.88075488810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lugar:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84M-OH-3ql">
+                                <rect key="frame" x="56" y="234" width="228" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map-location" translatesAutoresizingMaskIntoConstraints="NO" id="GXB-nY-WAL">
+                                <rect key="frame" x="30" y="237" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="47W-b4-vHZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1LK-Pb-9JG"/>
                             <constraint firstItem="47W-b4-vHZ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="rjf-Qj-F9w"/>
-                            <constraint firstItem="47W-b4-vHZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tko-5U-YjN"/>
+                            <constraint firstItem="47W-b4-vHZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-150" id="tko-5U-YjN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="Afb-Jw-Frz"/>
+                        <barButtonItem systemItem="action" id="Afb-Jw-Frz"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Nuevo Reporte" id="RLm-gT-WOb">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="menu" id="djG-54-JYA">
@@ -107,11 +149,19 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="camera" destination="g4g-EN-UJW" id="5Vs-3f-2et"/>
+                        <outlet property="descriptionInput" destination="8tL-vB-L2Z" id="foJ-VL-xxb"/>
+                        <outlet property="gps" destination="GXB-nY-WAL" id="3pj-4O-OG1"/>
                         <outlet property="leftConstraint" destination="tko-5U-YjN" id="4Zn-jZ-Hj7"/>
+                        <outlet property="locationInput" destination="84M-OH-3ql" id="0YT-oy-j5R"/>
                         <outlet property="mComments" destination="IOG-CS-FXH" id="f6Q-e9-XwW"/>
                         <outlet property="mConfig" destination="8mS-Ux-dAr" id="LhS-tv-HEL"/>
                         <outlet property="mImageLogo" destination="Lyh-eN-1zU" id="lLi-Es-e6m"/>
                         <outlet property="mReports" destination="F2d-L3-d9q" id="XsM-np-Oxl"/>
+                        <outlet property="mSend" destination="11c-40-HaU" id="9PF-Ny-dE6"/>
+                        <outlet property="reportImageType" destination="geP-gs-9pa" id="Ts6-tC-nhZ"/>
+                        <outlet property="send" destination="11c-40-HaU" id="Z9K-kb-3Fs"/>
+                        <outlet property="topContainer" destination="PH6-pA-8fw" id="aGR-oZ-qIA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -123,7 +173,7 @@
             <objects>
                 <viewController id="2pr-5P-MsH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gnq-f0-A5c">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3h7-o6-CXI"/>
@@ -138,7 +188,7 @@
             <objects>
                 <viewController id="qIN-eU-xu9" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1gG-hB-gwB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EQy-Ze-Zwa"/>
@@ -153,7 +203,7 @@
             <objects>
                 <viewController id="X6J-qO-jWH" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fmZ-Oj-fji">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bt7-1c-9kE"/>
@@ -169,7 +219,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gsX-af-QRa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xsV-MA-f1b">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -183,11 +233,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="512" height="512"/>
         <image name="cloud-computing" width="16" height="16"/>
         <image name="icon" width="16" height="16"/>
         <image name="info" width="24" height="24"/>
+        <image name="lamp" width="157" height="150"/>
+        <image name="logopro" width="96" height="96"/>
+        <image name="map-location" width="16" height="16"/>
         <image name="menu" width="24" height="24"/>
+        <image name="photo-camera" width="16" height="16"/>
         <image name="settings-gears" width="16" height="16"/>
     </resources>
 </document>

@@ -15,6 +15,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mConfig   : UIButton!
     @IBOutlet weak var mComments : UIButton!
     @IBOutlet weak var mReports  : UIButton!
+    @IBOutlet weak var mSend : UIButton!
+    @IBOutlet weak var topContainer: UIView!
+    @IBOutlet weak var reportImageType: UIImageView!
+    @IBOutlet weak var camera: UIImageView!
+    @IBOutlet weak var locationInput: UITextField!
+    @IBOutlet weak var gps: UIImageView!
+    @IBOutlet weak var descriptionInput: UITextView!
+    @IBOutlet weak var send: UIButton!
+    
     var isMenuHidden = true
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +32,7 @@ class MainViewController: UIViewController {
         mConfig.layer.cornerRadius = 8.0
         mComments.layer.cornerRadius = 8.0
         mReports.layer.cornerRadius = 8.0
+        mSend.layer.cornerRadius = 8.0
     }
 
     override func didReceiveMemoryWarning() {
