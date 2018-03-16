@@ -37,11 +37,19 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? Cell
 
-        cell.imageView?.image = UIImage(named: "light")
+        cell?.mImage?.image = UIImage(named: "light")
+        cell?.mImage?.layer.cornerRadius = 8.0
+        cell?.mImage?.clipsToBounds = true
+        cell?.mStatusLabel?.text = "Esperando conexión para subir"
+        cell?.mDateLabel?.text = "Lunes 2:38pm"
 
-        return cell
+        return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
  
 

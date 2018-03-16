@@ -10,6 +10,9 @@ import UIKit
 
 class Cell: UITableViewCell {
 
+    @IBOutlet weak var mImage: UIImageView!
+    @IBOutlet weak var mDateLabel: UILabel!
+    @IBOutlet weak var mStatusLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

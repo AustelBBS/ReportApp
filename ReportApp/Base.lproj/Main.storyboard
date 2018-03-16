@@ -246,6 +246,11 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mDateLabel" destination="dAT-FB-8Y0" id="7wJ-2F-M6Q"/>
+                                    <outlet property="mImage" destination="Sav-Sj-4Wm" id="8gn-lQ-eZY"/>
+                                    <outlet property="mStatusLabel" destination="Hwg-Pb-Itb" id="piF-Nx-whd"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
