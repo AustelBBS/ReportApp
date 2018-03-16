@@ -18,6 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTR-UP-SmG">
+                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Alumbrado" image="idea" id="DAm-S5-1fl"/>
+                                    <tabBarItem title="Baches" image="barrier" id="jgY-ZZ-frV"/>
+                                    <tabBarItem title="Basura" image="garbage" id="i4f-DU-sNi"/>
+                                </items>
+                            </tabBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47W-b4-vHZ" userLabel="Sidebar">
                                 <rect key="frame" x="-150" y="64" width="150" height="460"/>
                                 <subviews>
@@ -32,7 +42,7 @@
                                             <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="X6J-qO-jWH" kind="show" id="sIe-OO-bAv"/>
+                                            <segue destination="9Ld-ZP-yB0" kind="show" id="ehs-x8-hYy"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logopro" translatesAutoresizingMaskIntoConstraints="NO" id="Lyh-eN-1zU">
@@ -166,9 +176,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem systemItem="action" id="Afb-Jw-Frz"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Nuevo Reporte" id="RLm-gT-WOb">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="menu" id="djG-54-JYA">
                             <connections>
@@ -187,16 +195,68 @@
                         <outlet property="mComments" destination="IOG-CS-FXH" id="f6Q-e9-XwW"/>
                         <outlet property="mConfig" destination="8mS-Ux-dAr" id="LhS-tv-HEL"/>
                         <outlet property="mImageLogo" destination="Lyh-eN-1zU" id="lLi-Es-e6m"/>
+                        <outlet property="mLeftBtn" destination="DAm-S5-1fl" id="GCq-h2-PcD"/>
+                        <outlet property="mMiddleBtn" destination="jgY-ZZ-frV" id="hp8-oQ-dRg"/>
                         <outlet property="mReports" destination="F2d-L3-d9q" id="XsM-np-Oxl"/>
+                        <outlet property="mRightBtn" destination="i4f-DU-sNi" id="K9X-bm-Dlr"/>
                         <outlet property="mSend" destination="11c-40-HaU" id="9PF-Ny-dE6"/>
                         <outlet property="reportImageType" destination="geP-gs-9pa" id="Ts6-tC-nhZ"/>
                         <outlet property="send" destination="11c-40-HaU" id="Z9K-kb-3Fs"/>
+                        <outlet property="tabBar" destination="xTR-UP-SmG" id="dPf-kg-6oc"/>
                         <outlet property="topContainer" destination="PH6-pA-8fw" id="aGR-oZ-qIA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1010.625" y="76.056338028169009"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="dSW-Jj-BAd">
+            <objects>
+                <tableViewController id="9Ld-ZP-yB0" customClass="TableViewController" customModule="ReportApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aBW-Gv-sOO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="QVW-rE-x9K" customClass="Cell" customModule="ReportApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QVW-rE-x9K" id="HON-6v-url">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sav-Sj-4Wm">
+                                            <rect key="frame" x="9" y="0.0" width="93" height="93"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAT-FB-8Y0">
+                                            <rect key="frame" x="110" y="0.0" width="200" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwg-Pb-Itb">
+                                            <rect key="frame" x="110" y="36" width="200" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9Ld-ZP-yB0" id="xHo-GM-o6r"/>
+                            <outlet property="delegate" destination="9Ld-ZP-yB0" id="00Q-ju-FgI"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rX3-ww-NIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1843" y="76"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="77M-t3-zVJ">
@@ -205,7 +265,7 @@
                     <view key="view" contentMode="scaleToFill" id="gnq-f0-A5c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3h7-o6-CXI"/>
                     </view>
                 </viewController>
@@ -220,28 +280,13 @@
                     <view key="view" contentMode="scaleToFill" id="1gG-hB-gwB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="0.18623063740000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="EQy-Ze-Zwa"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CDU-Zo-cZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1873" y="788"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="bNT-li-htw">
-            <objects>
-                <viewController id="X6J-qO-jWH" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fmZ-Oj-fji">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="bt7-1c-9kE"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4H6-Wh-SaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1879" y="77"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qPf-8t-MAk">
@@ -263,8 +308,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="barrier" width="16" height="16"/>
         <image name="cloud-computing" width="16" height="16"/>
+        <image name="garbage" width="16" height="16"/>
         <image name="icon" width="16" height="16"/>
+        <image name="idea" width="16" height="16"/>
         <image name="info" width="24" height="24"/>
         <image name="lamp" width="157" height="150"/>
         <image name="logopro" width="96" height="96"/>

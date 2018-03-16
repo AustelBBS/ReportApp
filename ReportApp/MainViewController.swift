@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITabBarDelegate {
     //hola
     @IBOutlet weak var mImageLogo: UIImageView!
     @IBOutlet weak var leftConstraint: NSLayoutConstraint!
@@ -23,10 +23,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gps: UIImageView!
     @IBOutlet weak var descriptionInput: UITextView!
     @IBOutlet weak var send: UIButton!
+    @IBOutlet weak var mRightBtn: UITabBarItem!
+    @IBOutlet weak var mMiddleBtn: UITabBarItem!
+    @IBOutlet weak var mLeftBtn: UITabBarItem!
+    @IBOutlet weak var tabBar: UITabBar!
     
     var isMenuHidden = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.delegate = self
         mImageLogo.layer.cornerRadius = 8.0
         mImageLogo.clipsToBounds = true
         mConfig.layer.cornerRadius = 8.0
@@ -55,6 +60,20 @@ class MainViewController: UIViewController {
             })
         }
         isMenuHidden = !isMenuHidden
+    }
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item == mLeftBtn {
+            changeImage(name: "lamp")
+        } else if item == mMiddleBtn {
+            changeImage(name: "bache")
+        } else {
+            changeImage(name: "basura")
+        }
+    }
+    
+    func changeImage (name: String) {
+        reportImageType.image = UIImage(named: name)
     }
     
     

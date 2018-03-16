@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1600A6A6205BAE30003733F2 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600A6A5205BAE2F003733F2 /* Cell.swift */; };
+		1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600A6A7205BAE4A003733F2 /* TableViewController.swift */; };
 		16BDA4EF2058E30700C9B015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA4EE2058E30700C9B015 /* AppDelegate.swift */; };
 		16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA4F02058E30700C9B015 /* MainViewController.swift */; };
 		16BDA4F42058E30700C9B015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16BDA4F22058E30700C9B015 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1600A6A5205BAE2F003733F2 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		1600A6A7205BAE4A003733F2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		16BDA4EB2058E30700C9B015 /* ReportApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReportApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16BDA4EE2058E30700C9B015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16BDA4F02058E30700C9B015 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				16BDA4F52058E30700C9B015 /* Assets.xcassets */,
 				16BDA4F72058E30700C9B015 /* LaunchScreen.storyboard */,
 				16BDA4FA2058E30700C9B015 /* Info.plist */,
+				1600A6A5205BAE2F003733F2 /* Cell.swift */,
+				1600A6A7205BAE4A003733F2 /* TableViewController.swift */,
 			);
 			path = ReportApp;
 			sourceTree = "<group>";
@@ -261,6 +267,8 @@
 			files = (
 				16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */,
 				16BDA4EF2058E30700C9B015 /* AppDelegate.swift in Sources */,
+				1600A6A6205BAE30003733F2 /* Cell.swift in Sources */,
+				1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
