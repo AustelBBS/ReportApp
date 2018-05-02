@@ -65,7 +65,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     @IBAction func logout(_ sender: UIButton) {
-        _ = navigationController?.popViewController(animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

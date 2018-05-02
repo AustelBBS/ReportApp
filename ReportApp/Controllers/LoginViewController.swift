@@ -34,8 +34,64 @@ class LoginViewController: UIViewController {
     
     @IBAction func login(_ sender: UIButton) {
         print("click")
+        let service = WebService()
+        let encoder = JSONEncoder()
+        let credentials = Login(nombreUsuario: userTF.text, passwordHash: passTF.text)
+        var token : TestLogin?
+        var done = false
+        do {
+            let data = try encoder.encode(credentials)
+            service.login(data: data) { (loginToken) in
+                print(loginToken)
+                UserDefaults.standard.set(loginToken, forKey: "UserToken")
+                token = TestLogin(token: UserDefaults.standard.string(forKey: "UserToken"))
+            }
+            repeat {
+                if token != nil {
+                    done = true
+                }
+            } while !done
+            done = false
+            var loggedIn = false
+            let newToken = try encoder.encode(token)
+            service.testLogin(data: newToken) { (response) in
+                if response! {
+                    done = response!
+                    loggedIn = true
+                } else {
+                  done = true
+                }
+            }
+            repeat {
+            } while !done
+            if loggedIn {
+                self.userTF.text = ""
+                self.passTF.text = ""
+                self.performSegue(withIdentifier: "toMainView", sender: self)
+            } else {
+                displayAlert(msg: "Usuario no registrado!")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
         
-        performSegue(withIdentifier: "toMainView", sender: self)
+    }
+    
+    func displayAlert(msg: String) {
+        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+            switch action.style {
+            case .default:
+                print("default")
+            case .cancel :
+                print("cancel")
+            case .destructive :
+                print("destructive")
+            }
+        }))
+        self.userTF.text = ""
+        self.passTF.text = ""
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func createAccount(sender: UITapGestureRecognizer) {

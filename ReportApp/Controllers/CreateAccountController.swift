@@ -35,7 +35,7 @@ class CreateAccountController: UIViewController {
     }
     
     @objc func regresar() {
-        _ = navigationController?.popViewController(animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func registrar() {
@@ -43,12 +43,11 @@ class CreateAccountController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
             switch action.style {
             case .default:
-                    self.performSegue(withIdentifier: "fromRegisterToMain", sender: self)
+                     _ = self.navigationController?.popToRootViewController(animated: true)
             case .cancel :
                 print("cancel")
             case .destructive :
                 print("destructive")
-            
             }
         }))
         let service = WebService()

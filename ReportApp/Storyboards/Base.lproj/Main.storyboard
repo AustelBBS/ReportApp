@@ -82,7 +82,7 @@
                                             <constraint firstAttribute="height" constant="30" id="EPK-ms-Q1O"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title=" Salir" image="idea">
+                                        <state key="normal" title=" Salir" image="logout">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -512,12 +512,13 @@
         <image name="info" width="24" height="24"/>
         <image name="lamp" width="157" height="150"/>
         <image name="logopro" width="96" height="96"/>
+        <image name="logout" width="32" height="32"/>
         <image name="map-location" width="16" height="16"/>
         <image name="menu" width="24" height="24"/>
         <image name="photo-camera" width="16" height="16"/>
         <image name="settings-gears" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5kI-gb-YGM"/>
+        <segue reference="W6I-g7-vbW"/>
     </inferredMetricsTieBreakers>
 </document>
