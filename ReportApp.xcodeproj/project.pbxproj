@@ -18,6 +18,7 @@
 		16BDA4F92058E30700C9B015 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16BDA4F72058E30700C9B015 /* LaunchScreen.storyboard */; };
 		16BDA5042058E30700C9B015 /* ReportAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA5032058E30700C9B015 /* ReportAppTests.swift */; };
 		16BDA50F2058E30700C9B015 /* ReportAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA50E2058E30700C9B015 /* ReportAppUITests.swift */; };
+		16F26EA72099765B0074E13B /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F26EA62099765B0074E13B /* WebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		16BDA50A2058E30700C9B015 /* ReportAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReportAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16BDA50E2058E30700C9B015 /* ReportAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAppUITests.swift; sourceTree = "<group>"; };
 		16BDA5102058E30700C9B015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16F26EA62099765B0074E13B /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		16BDA4ED2058E30700C9B015 /* ReportApp */ = {
 			isa = PBXGroup;
 			children = (
+				16F26EA52099763B0074E13B /* Service */,
 				16BDA4EE2058E30700C9B015 /* AppDelegate.swift */,
 				168A262E2085B0AA004582A6 /* Storyboards */,
 				168A262D2085B089004582A6 /* Controllers */,
@@ -151,6 +154,14 @@
 				16BDA5102058E30700C9B015 /* Info.plist */,
 			);
 			path = ReportAppUITests;
+			sourceTree = "<group>";
+		};
+		16F26EA52099763B0074E13B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				16F26EA62099765B0074E13B /* WebService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +300,7 @@
 			files = (
 				16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */,
 				16BDA4EF2058E30700C9B015 /* AppDelegate.swift in Sources */,
+				16F26EA72099765B0074E13B /* WebService.swift in Sources */,
 				1600A6A6205BAE30003733F2 /* Cell.swift in Sources */,
 				168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */,
 				168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */,

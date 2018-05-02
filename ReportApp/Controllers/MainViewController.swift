@@ -27,6 +27,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var mMiddleBtn: UITabBarItem!
     @IBOutlet weak var mLeftBtn: UITabBarItem!
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var mExitBtn: UIButton!
     
     var isMenuHidden = true
     override func viewDidLoad() {
@@ -38,6 +39,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
         mComments.layer.cornerRadius = 8.0
         mReports.layer.cornerRadius = 8.0
         mSend.layer.cornerRadius = 8.0
+        mExitBtn.layer.cornerRadius = 8.0
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
     }
@@ -60,6 +62,10 @@ class MainViewController: UIViewController, UITabBarDelegate {
             })
         }
         isMenuHidden = !isMenuHidden
+    }
+    
+    @IBAction func logout(_ sender: UIButton) {
+        _ = navigationController?.popViewController(animated: true)
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {

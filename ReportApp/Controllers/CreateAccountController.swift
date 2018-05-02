@@ -10,26 +10,19 @@ import UIKit
 
 class CreateAccountController: UIViewController {
 
-    @IBOutlet weak var nombreTF: UITextField!
-    @IBOutlet weak var sexoTF: UITextField!
-    @IBOutlet weak var fechaTF : UITextField!
-    @IBOutlet weak var correoTF : UITextField!
-    @IBOutlet weak var contraseñaTF : UITextField!
-    @IBOutlet weak var confirmarTF : UITextField!
-    @IBOutlet weak var telefonoTF : UITextField!
+    @IBOutlet weak var usuario: UITextField!
+    @IBOutlet weak var correo: UITextField!
+    @IBOutlet weak var contrasena : UITextField!
+    
     @IBOutlet weak var registrarBtn: UIButton!
     @IBOutlet weak var cancelarBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nombreTF.placeholder = "Nombre"
-        sexoTF.placeholder = "Sexo"
-        fechaTF.placeholder = "Fecha de Nacimiento"
-        correoTF.placeholder = "Correo"
-        contraseñaTF.placeholder = "Contraeña"
-        confirmarTF.placeholder = "Confirmar contraseña"
-        telefonoTF.placeholder = "Teléfono"
+        usuario.placeholder = "Nombre de usuario"
+        correo.placeholder = "Correo"
+        contrasena.placeholder = "Contraseña"
         
         cancelarBtn.addTarget(self, action: "regresar", for: .touchUpInside)
         registrarBtn.addTarget(self, action: "registrar", for: .touchUpInside)
@@ -42,7 +35,7 @@ class CreateAccountController: UIViewController {
     }
     
     @objc func regresar() {
-        print("regresar")
+        _ = navigationController?.popViewController(animated: true)
     }
     
     @objc func registrar() {
@@ -58,7 +51,23 @@ class CreateAccountController: UIViewController {
             
             }
         }))
-        self.present(alert, animated: true, completion: nil)
+        let service = WebService()
+        let datos = SignIn(nombreUsuario: usuario.text, correo: correo.text, passwordHash: contrasena.text)
+        let encoder = JSONEncoder()
+        do {
+            let datos = try encoder.encode(datos)
+            DispatchQueue.main.async {
+                service.register(data: datos) { (error) in
+                    if let error = error {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+            }
+            self.present(alert, animated: true, completion: nil)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
     }
 
 
