@@ -167,6 +167,9 @@
                                         <state key="normal" title="Enviar">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendReport:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5pK-5t-g1y"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -519,6 +522,6 @@
         <image name="settings-gears" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="W6I-g7-vbW"/>
+        <segue reference="5kI-gb-YGM"/>
     </inferredMetricsTieBreakers>
 </document>

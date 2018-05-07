@@ -28,10 +28,11 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var mLeftBtn: UITabBarItem!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var mExitBtn: UIButton!
-    
+    var mReportType : String?
     var isMenuHidden = true
     override func viewDidLoad() {
         super.viewDidLoad()
+        mReportType = "lamp"
         tabBar.delegate = self
         mImageLogo.layer.cornerRadius = 8.0
         mImageLogo.clipsToBounds = true
@@ -68,13 +69,21 @@ class MainViewController: UIViewController, UITabBarDelegate {
         _ = navigationController?.popToRootViewController(animated: true)
     }
     
+    @IBAction func sendReport(_ sender: UIButton) {
+        print(mReportType)
+        
+    }
+    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item == mLeftBtn {
             changeImage(name: "lamp")
+            mReportType = "lamp"
         } else if item == mMiddleBtn {
             changeImage(name: "bache")
+            mReportType = "lamp"
         } else {
             changeImage(name: "basura")
+            mReportType = "lamp"
         }
     }
     

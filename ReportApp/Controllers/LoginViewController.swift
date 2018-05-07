@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         var done = false
         do {
             let data = try encoder.encode(credentials)
-            service.login(data: data) { (loginToken) in
+            service.login(data: data, method: "POST") { (loginToken) in
                 print(loginToken)
                 UserDefaults.standard.set(loginToken, forKey: "UserToken")
                 token = TestLogin(token: UserDefaults.standard.string(forKey: "UserToken"))
@@ -52,9 +52,9 @@ class LoginViewController: UIViewController {
                 }
             } while !done
             done = false
-            var loggedIn = false
-            let newToken = try encoder.encode(token)
-            service.testLogin(data: newToken) { (response) in
+            var loggedIn = true
+            /*let newToken = try encoder.encode(token)
+            service.testLogin(data: newToken, method: "GET") { (response) in
                 if response! {
                     done = response!
                     loggedIn = true
@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
                 }
             }
             repeat {
-            } while !done
+            } while !done*/
             if loggedIn {
                 self.userTF.text = ""
                 self.passTF.text = ""

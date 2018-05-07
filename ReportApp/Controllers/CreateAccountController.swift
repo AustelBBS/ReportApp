@@ -56,7 +56,7 @@ class CreateAccountController: UIViewController {
         do {
             let datos = try encoder.encode(datos)
             DispatchQueue.main.async {
-                service.register(data: datos) { (error) in
+                service.register(data: datos, method: "POST") { (error) in
                     if let error = error {
                         fatalError(error.localizedDescription)
                     }
