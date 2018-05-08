@@ -8,27 +8,6 @@
 
 import Foundation
 
-struct SignIn : Codable {
-    var nombreUsuario : String?
-    var correo : String?
-    var passwordHash : String?
-}
-
-struct Login : Codable {
-    var nombreUsuario : String?
-    var passwordHash : String?
-}
-
-struct TestLogin : Codable {
-    var token : String?
-}
-
-struct Report : Codable {
-    var descripcion : String?
-    var latitud : Double?
-    var longitud : Double?
-    var tipo : String?
-}
 
 class WebService {
     
@@ -143,7 +122,7 @@ class WebService {
         task.resume()
     }
     
-    func loadReports(token: String, method: String, completion:((Bool?) -> Void)?) {
+    func loadReports(token: String, method: String, completion:((Data?) -> Void)?) {
         guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/reportes/vermios/") else {
             fatalError("Couldn't parse server address")
         }
@@ -160,11 +139,10 @@ class WebService {
             guard error == nil else {
                 return
             }
-            print(response)
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
                 print(utf8)
-                completion?(true)
+                completion?(dato)
             }
         }
         task.resume()

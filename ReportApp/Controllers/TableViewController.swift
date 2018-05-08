@@ -9,15 +9,32 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
+    var mReports : [ReportInfo]?
+    let service = WebService()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let token = UserDefaults.standard.string(forKey: "UserToken")
+        var data : Data?
+        var flag : Bool = false
+        service.loadReports(token: token!, method: "GET") {
+                responseData in
+                data = responseData
+                do {
+                    let decoder = JSONDecoder()
+                    let reportsArray = try decoder.decode(JSONArray.self, from: data!)
+                    self.mReports = reportsArray
+                    flag = true
+                } catch {
+                    print(error.localizedDescription)
+                }
+        }
+        
+        repeat {
+        } while !flag
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,18 +49,20 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return (mReports?.count)!
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? Cell
 
+        let report = mReports![indexPath.row]
+        
         cell?.mImage?.image = UIImage(named: "light")
         cell?.mImage?.layer.cornerRadius = 8.0
         cell?.mImage?.clipsToBounds = true
-        cell?.mStatusLabel?.text = "Esperando conexión para subir"
-        cell?.mDateLabel?.text = "Lunes 2:38pm"
+        cell?.mStatusLabel?.text = report.descripcion
+        cell?.mDateLabel?.text = report.fechaHora
 
         return cell!
     }

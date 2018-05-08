@@ -48,7 +48,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
         gpsManager = Geolocalization()
         gpsManager?.requestLocation()
         let localLocation = gpsManager?.requestCoords()
-        locationInput.text = "Lat: ((localLocation?.coordinate.latitude)!) Lon: ((localLocation?.coordinate.longitude)!)"
+        locationInput.text = "Lat: \((localLocation?.coordinate.latitude)!) Lon: \((localLocation?.coordinate.longitude)!)"
         mLatitud = Double(localLocation?.coordinate.latitude ?? 0)
         mLongitud = Double(localLocation?.coordinate.longitude ?? 0)
         tabBar.delegate = self
@@ -84,6 +84,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     @IBAction func logout(_ sender: UIButton) {
+        UserDefaults.standard.set("", forKey: "UserToken")
+        UserDefaults.standard.synchronize()
         _ = navigationController?.popToRootViewController(animated: true)
     }
     
