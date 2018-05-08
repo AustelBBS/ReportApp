@@ -9,7 +9,7 @@
 import UIKit
 
 class CreateAccountController: UIViewController {
-
+    
     @IBOutlet weak var usuario: UITextField!
     @IBOutlet weak var correo: UITextField!
     @IBOutlet weak var contrasena : UITextField!
@@ -19,7 +19,7 @@ class CreateAccountController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardOnTouch()
         usuario.placeholder = "Nombre de usuario"
         correo.placeholder = "Correo"
         contrasena.placeholder = "Contraseña"
@@ -28,7 +28,7 @@ class CreateAccountController: UIViewController {
         registrarBtn.addTarget(self, action: "registrar", for: .touchUpInside)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,7 +43,7 @@ class CreateAccountController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
             switch action.style {
             case .default:
-                     _ = self.navigationController?.popToRootViewController(animated: true)
+                _ = self.navigationController?.popToRootViewController(animated: true)
             case .cancel :
                 print("cancel")
             case .destructive :
@@ -68,6 +68,7 @@ class CreateAccountController: UIViewController {
         }
         
     }
-
-
+    
+    
 }
+

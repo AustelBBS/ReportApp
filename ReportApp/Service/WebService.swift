@@ -23,12 +23,17 @@ struct TestLogin : Codable {
     var token : String?
 }
 
+struct Report : Codable {
+    var descripcion : String?
+    var latitud : Double?
+    var longitud : Double?
+    var tipo : String?
+}
+
 class WebService {
     
     
-    func testLogin(data: Data, method: String, completion:((Bool?) -> Void)?) {
-        
-        print("executed")
+    func testLogin(token: String, method: String, completion:((Bool?) -> Void)?) {
         
         guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/usuario/testLogin/") else {
             fatalError("Couldn't parse server address")
@@ -36,10 +41,7 @@ class WebService {
         
         var request = URLRequest(url: url)
         request.httpMethod = method
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        request.httpBody = data
+        request.setValue(token, forHTTPHeaderField: "access_token")
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -49,10 +51,11 @@ class WebService {
             guard error == nil else {
                 return
             }
+            print(response)
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
                 print(utf8)
-                if utf8.range(of: "valido") != nil {
+                if utf8.range(of: "starbacks") != nil {
                     print("Acceso valido!")
                     completion?(true)
                 } else {
@@ -131,7 +134,7 @@ class WebService {
             }
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                print("response \(utf8)")
+                print("response (utf8)")
             } else {
                 print("No data in response")
             }
@@ -140,16 +143,44 @@ class WebService {
         task.resume()
     }
     
-    func sendPost(data: Data, completion:((Error?) -> Void)?) {
-        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/reportes/post/") else {
+    func loadReports(token: String, method: String, completion:((Bool?) -> Void)?) {
+        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/reportes/vermios/") else {
             fatalError("Couldn't parse server address")
         }
         
         var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.setValue(token, forHTTPHeaderField: "access_token")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) {
+            (data, response, error) in
+            
+            guard error == nil else {
+                return
+            }
+            print(response)
+            
+            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                print(utf8)
+                completion?(true)
+            }
+        }
+        task.resume()
+        
+    }
+    
+    func sendPost(data: Data, token: String, completion:((Error?) -> Void)?) {
+        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/reportes/post/") else {
+            fatalError("Couldn't parse server address")
+        }
+        print(token)
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
+        request.setValue(token, forHTTPHeaderField: "access_token")
         request.httpBody = data
         
         let config = URLSessionConfiguration.default
@@ -163,7 +194,7 @@ class WebService {
             }
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                print("response \(utf8)")
+                print("response (utf8)")
             } else {
                 print("No data in response")
             }
@@ -173,3 +204,4 @@ class WebService {
     }
     
 }
+

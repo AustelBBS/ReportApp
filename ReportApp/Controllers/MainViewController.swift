@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainViewController: UIViewController, UITabBarDelegate {
     //hola
@@ -28,11 +29,28 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var mLeftBtn: UITabBarItem!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var mExitBtn: UIButton!
+    var mLatitud : Double?
+    var mLongitud : Double?
     var mReportType : String?
     var isMenuHidden = true
+    var gpsManager : Geolocalization?
+    let service = WebService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        mReportType = "lamp"
+        prepareController()
+    }
+    
+    func prepareController() {
+        mReportType = "alumbrado"
+        self.hideKeyboardOnTouch()
+        self.setKeyboardHandlers()
+        gpsManager = Geolocalization()
+        gpsManager?.requestLocation()
+        let localLocation = gpsManager?.requestCoords()
+        locationInput.text = "Lat: ((localLocation?.coordinate.latitude)!) Lon: ((localLocation?.coordinate.longitude)!)"
+        mLatitud = Double(localLocation?.coordinate.latitude ?? 0)
+        mLongitud = Double(localLocation?.coordinate.longitude ?? 0)
         tabBar.delegate = self
         mImageLogo.layer.cornerRadius = 8.0
         mImageLogo.clipsToBounds = true
@@ -44,12 +62,12 @@ class MainViewController: UIViewController, UITabBarDelegate {
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         if isMenuHidden {
             leftConstraint.constant = 0
@@ -71,19 +89,31 @@ class MainViewController: UIViewController, UITabBarDelegate {
     
     @IBAction func sendReport(_ sender: UIButton) {
         print(mReportType)
+        let params = Report(descripcion: descriptionInput.text, latitud: mLatitud, longitud: mLongitud, tipo: mReportType)
+        let jsonEncoder = JSONEncoder()
+        do {
+            let data = try jsonEncoder.encode(params)
+            service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "UserToken")!) {
+                error in
+                print(error)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
         
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        
         if item == mLeftBtn {
             changeImage(name: "lamp")
-            mReportType = "lamp"
+            mReportType = "alumbrado"
         } else if item == mMiddleBtn {
             changeImage(name: "bache")
-            mReportType = "lamp"
+            mReportType = "bacheo"
         } else {
             changeImage(name: "basura")
-            mReportType = "lamp"
+            mReportType = "sanidad"
         }
     }
     
@@ -92,5 +122,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     
+    
+    
 }
+
 

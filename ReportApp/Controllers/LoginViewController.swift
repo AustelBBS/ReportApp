@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var userTF: UITextField!
     @IBOutlet weak var passTF: UITextField!
     
@@ -17,14 +17,14 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardOnTouch()
+        self.setKeyboardHandlers()
         userTF.placeholder = "Usuario"
         passTF.placeholder = "Contraseña"
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.createAccount))
         linkLnl.isUserInteractionEnabled = true
         linkLnl.addGestureRecognizer(tap)
-    
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,14 +37,14 @@ class LoginViewController: UIViewController {
         let service = WebService()
         let encoder = JSONEncoder()
         let credentials = Login(nombreUsuario: userTF.text, passwordHash: passTF.text)
-        var token : TestLogin?
+        var token : String?
         var done = false
         do {
             let data = try encoder.encode(credentials)
             service.login(data: data, method: "POST") { (loginToken) in
                 print(loginToken)
                 UserDefaults.standard.set(loginToken, forKey: "UserToken")
-                token = TestLogin(token: UserDefaults.standard.string(forKey: "UserToken"))
+                token = UserDefaults.standard.string(forKey: "UserToken")
             }
             repeat {
                 if token != nil {
@@ -52,18 +52,18 @@ class LoginViewController: UIViewController {
                 }
             } while !done
             done = false
-            var loggedIn = true
-            /*let newToken = try encoder.encode(token)
-            service.testLogin(data: newToken, method: "GET") { (response) in
+            var loggedIn = false
+            
+            service.testLogin(token: token!, method: "GET") { (response) in
                 if response! {
                     done = response!
                     loggedIn = true
                 } else {
-                  done = true
+                    done = true
                 }
             }
             repeat {
-            } while !done*/
+            } while !done
             if loggedIn {
                 self.userTF.text = ""
                 self.passTF.text = ""
@@ -97,5 +97,8 @@ class LoginViewController: UIViewController {
     @objc func createAccount(sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "toCreateAccount", sender: self)
     }
-
+    
 }
+
+
+
