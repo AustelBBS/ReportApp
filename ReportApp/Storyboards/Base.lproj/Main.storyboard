@@ -131,20 +131,33 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzl-QS-59Z" userLabel="Middle Container">
                                 <rect key="frame" x="30" y="220" width="254" height="59"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map-location" translatesAutoresizingMaskIntoConstraints="NO" id="GXB-nY-WAL">
-                                        <rect key="frame" x="0.0" y="17" width="24" height="24"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lugar:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84M-OH-3ql">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lugar:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84M-OH-3ql">
                                         <rect key="frame" x="26" y="14" width="228" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCB-N9-Qtg">
+                                        <rect key="frame" x="0.0" y="14" width="25" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="47I-Gi-c0k"/>
+                                            <constraint firstAttribute="height" constant="30" id="5rc-va-4lP"/>
+                                        </constraints>
+                                        <state key="normal" image="map-location"/>
+                                        <connections>
+                                            <action selector="getLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g8G-8b-u8r"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="aCB-N9-Qtg" secondAttribute="bottom" constant="15" id="4iP-RT-Bm5"/>
+                                    <constraint firstItem="aCB-N9-Qtg" firstAttribute="top" secondItem="fzl-QS-59Z" secondAttribute="top" constant="14" id="5Ff-cu-W20"/>
+                                    <constraint firstAttribute="bottom" secondItem="84M-OH-3ql" secondAttribute="bottom" constant="15" id="QJr-Cz-c7O"/>
+                                    <constraint firstItem="84M-OH-3ql" firstAttribute="leading" secondItem="aCB-N9-Qtg" secondAttribute="trailing" constant="1" id="dUF-a0-OIz"/>
+                                    <constraint firstItem="aCB-N9-Qtg" firstAttribute="leading" secondItem="fzl-QS-59Z" secondAttribute="leading" id="e9S-gr-LkL"/>
+                                    <constraint firstItem="84M-OH-3ql" firstAttribute="top" secondItem="fzl-QS-59Z" secondAttribute="top" constant="14" id="eNB-BD-MYi"/>
+                                    <constraint firstAttribute="trailing" secondItem="84M-OH-3ql" secondAttribute="trailing" id="juT-Sw-x0O"/>
                                     <constraint firstAttribute="height" constant="59" id="kbe-0r-cAC"/>
                                     <constraint firstAttribute="width" constant="254" id="w31-tc-cXE"/>
                                 </constraints>
@@ -212,7 +225,7 @@
                     <connections>
                         <outlet property="camera" destination="g4g-EN-UJW" id="5Vs-3f-2et"/>
                         <outlet property="descriptionInput" destination="8tL-vB-L2Z" id="foJ-VL-xxb"/>
-                        <outlet property="gps" destination="GXB-nY-WAL" id="3pj-4O-OG1"/>
+                        <outlet property="gps" destination="aCB-N9-Qtg" id="wW0-HN-OX7"/>
                         <outlet property="leftConstraint" destination="tko-5U-YjN" id="4Zn-jZ-Hj7"/>
                         <outlet property="locationInput" destination="84M-OH-3ql" id="0YT-oy-j5R"/>
                         <outlet property="mComments" destination="IOG-CS-FXH" id="f6Q-e9-XwW"/>

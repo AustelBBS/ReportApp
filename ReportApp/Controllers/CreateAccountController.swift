@@ -24,8 +24,8 @@ class CreateAccountController: UIViewController {
         correo.placeholder = "Correo"
         contrasena.placeholder = "Contraseña"
         
-        cancelarBtn.addTarget(self, action: "regresar", for: .touchUpInside)
-        registrarBtn.addTarget(self, action: "registrar", for: .touchUpInside)
+        cancelarBtn.addTarget(self, action: #selector(CreateAccountController.regresar), for: .touchUpInside)
+        registrarBtn.addTarget(self, action: #selector(CreateAccountController.registrar), for: .touchUpInside)
         
     }
     

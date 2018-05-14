@@ -30,8 +30,6 @@ class WebService {
             guard error == nil else {
                 return
             }
-            print(response)
-            
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
                 print(utf8)
                 if utf8.range(of: "starbacks") != nil {
@@ -113,7 +111,7 @@ class WebService {
             }
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                print("response (utf8)")
+                print("response \(utf8)")
             } else {
                 print("No data in response")
             }
@@ -149,7 +147,7 @@ class WebService {
         
     }
     
-    func sendPost(data: Data, token: String, completion:((Error?) -> Void)?) {
+    func sendPost(data: Data, token: String, completion:((Error?, Bool?) -> Void)?) {
         guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/reportes/post/") else {
             fatalError("Couldn't parse server address")
         }
@@ -167,12 +165,13 @@ class WebService {
             (data, response, error) in
             
             guard error == nil else {
-                completion?(error)
+                completion?(error, false)
                 return
             }
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                print("response (utf8)")
+                print("response \(utf8)")
+                completion?(nil, true)
             } else {
                 print("No data in response")
             }

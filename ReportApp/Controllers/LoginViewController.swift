@@ -42,7 +42,6 @@ class LoginViewController: UIViewController {
         do {
             let data = try encoder.encode(credentials)
             service.login(data: data, method: "POST") { (loginToken) in
-                print(loginToken)
                 UserDefaults.standard.set(loginToken, forKey: "UserToken")
                 token = UserDefaults.standard.string(forKey: "UserToken")
             }
@@ -58,8 +57,6 @@ class LoginViewController: UIViewController {
                 if response! {
                     done = response!
                     loggedIn = true
-                } else {
-                    done = true
                 }
             }
             repeat {
@@ -79,16 +76,7 @@ class LoginViewController: UIViewController {
     
     func displayAlert(msg: String) {
         let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-            switch action.style {
-            case .default:
-                print("default")
-            case .cancel :
-                print("cancel")
-            case .destructive :
-                print("destructive")
-            }
-        }))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.userTF.text = ""
         self.passTF.text = ""
         self.present(alert, animated: true, completion: nil)

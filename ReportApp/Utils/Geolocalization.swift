@@ -18,14 +18,14 @@ class Geolocalization {
         mLocationManager.requestWhenInUseAuthorization()
     }
     
-    func requestCoords() -> CLLocation {
+    func requestCoords() -> CLLocation? {
         
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse || CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
             mCurrentLocation = mLocationManager.location
-            return mCurrentLocation!
+            return mCurrentLocation
         } else {
             mCurrentLocation = mLocationManager.location
-            return mCurrentLocation!
+            return mCurrentLocation
         }
     }
     

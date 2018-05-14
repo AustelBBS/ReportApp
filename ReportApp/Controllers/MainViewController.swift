@@ -21,7 +21,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var reportImageType: UIImageView!
     @IBOutlet weak var camera: UIImageView!
     @IBOutlet weak var locationInput: UITextField!
-    @IBOutlet weak var gps: UIImageView!
+    @IBOutlet weak var gps: UIButton!
     @IBOutlet weak var descriptionInput: UITextView!
     @IBOutlet weak var send: UIButton!
     @IBOutlet weak var mRightBtn: UITabBarItem!
@@ -47,10 +47,9 @@ class MainViewController: UIViewController, UITabBarDelegate {
         self.setKeyboardHandlers()
         gpsManager = Geolocalization()
         gpsManager?.requestLocation()
-        let localLocation = gpsManager?.requestCoords()
-        locationInput.text = "Lat: \((localLocation?.coordinate.latitude)!) Lon: \((localLocation?.coordinate.longitude)!)"
-        mLatitud = Double(localLocation?.coordinate.latitude ?? 0)
-        mLongitud = Double(localLocation?.coordinate.longitude ?? 0)
+        if let localLocation = gpsManager?.requestCoords(){
+            setLocation(localLocation: localLocation)
+        }
         tabBar.delegate = self
         mImageLogo.layer.cornerRadius = 8.0
         mImageLogo.clipsToBounds = true
@@ -90,14 +89,19 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     @IBAction func sendReport(_ sender: UIButton) {
-        print(mReportType)
         let params = Report(descripcion: descriptionInput.text, latitud: mLatitud, longitud: mLongitud, tipo: mReportType)
         let jsonEncoder = JSONEncoder()
         do {
             let data = try jsonEncoder.encode(params)
             service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "UserToken")!) {
-                error in
-                print(error)
+                error, success in
+                if error != nil {
+                    print(error as Any)
+                } else {
+                    DispatchQueue.main.async {
+                        self.displayAlert(msg: "Reporte enviado satisfactoriamente.")
+                    }
+                }
             }
         } catch {
             print(error.localizedDescription)
@@ -121,6 +125,28 @@ class MainViewController: UIViewController, UITabBarDelegate {
     
     func changeImage (name: String) {
         reportImageType.image = UIImage(named: name)
+    }
+    
+    @IBAction func getLocation(_ sender: UIButton) {
+        if let location = gpsManager?.requestCoords() {
+            setLocation(localLocation: location)
+        } else {
+            gpsManager?.requestLocation()
+        }
+    }
+    
+    func displayAlert(msg: String) {
+        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.locationInput.text = ""
+        self.descriptionInput.text = ""
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func  setLocation(localLocation: CLLocation) {
+        locationInput.text = "Lat: \((localLocation.coordinate.latitude)) Lon: \((localLocation.coordinate.longitude))"
+        mLatitud = Double(localLocation.coordinate.latitude)
+        mLongitud = Double(localLocation.coordinate.longitude)
     }
     
     
