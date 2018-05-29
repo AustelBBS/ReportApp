@@ -115,6 +115,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
         service.uploadImage(image: reportImageType.image!, id: id) {
             done in
             if done! {
+                self.displayAlert(msg: "Reporte enviado!")
                 self.resetUI()
             }
         }

@@ -1,0 +1,8 @@
+
+App Thinning Size Report for All Variants of EDutel
+
+Variant: EDutel-iPhone 8.ipa
+Supported devices: iPhone 8
+App + On Demand Resources size: 3.7 MB compressed, 10.3 MB uncompressed
+App size: 3.7 MB compressed, 10.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
