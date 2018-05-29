@@ -42,7 +42,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     func prepareController() {
-        mReportType = "alumbrado"
+        mReportType = "lighting"
         self.hideKeyboardOnTouch()
         self.setKeyboardHandlers()
         gpsManager = Geolocalization()
@@ -90,26 +90,41 @@ class MainViewController: UIViewController, UITabBarDelegate {
     
     @IBAction func sendReport(_ sender: UIButton) {
         let params = Report(description: descriptionInput.text, latitude: mLatitud, longitude: mLongitud, type: mReportType)
-        uploadPhoto()
         let jsonEncoder = JSONEncoder()
+        let jsonDecoder = JSONDecoder()
         do {
             let data = try jsonEncoder.encode(params)
             service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "UserToken")!) {
-                error, success in
+                error, success, response in
                 if error != nil {
                     print(error as Any)
-                } else {
-                   print("Reporte enviado")
+                }
+                if success! {
+                    let responseId = try! jsonDecoder.decode(ResponseID.self, from: response!)
+                    print(responseId.reportId!)
+                    self.uploadPhoto(id: responseId.reportId!)
                 }
             }
         } catch {
-            print(error.localizedDescription)
+            print(error)
         }
         
     }
     
-    func uploadPhoto() {
-        
+    func uploadPhoto(id : Int) {
+        service.uploadImage(image: reportImageType.image!, id: id) {
+            done in
+            if done! {
+                self.resetUI()
+            }
+        }
+    }
+    
+    func resetUI() {
+        changeImage(name: "lamp")
+        mReportType = "lighting"
+        descriptionInput.text = "¿Que más nos puedes decir?"
+        locationInput.text = "Toca el gps para tener ubicación."
     }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -119,10 +134,10 @@ class MainViewController: UIViewController, UITabBarDelegate {
             mReportType = "lighting"
         } else if item == mMiddleBtn {
             changeImage(name: "bache")
-            mReportType = "bacheo"
+            mReportType = "roads"
         } else {
             changeImage(name: "basura")
-            mReportType = "sanidad"
+            mReportType = "trash"
         }
     }
     

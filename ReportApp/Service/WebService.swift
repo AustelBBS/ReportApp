@@ -6,6 +6,8 @@
 //  Copyright © 2018 Los Ponis. All rights reserved.
 //
 
+import Alamofire
+import UIKit
 import Foundation
 
 
@@ -112,7 +114,7 @@ class WebService {
     }
     
     func loadReports(token: String, method: String, completion:((Data?) -> Void)?) {
-        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/report/vermios/") else {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/report/get/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -138,7 +140,37 @@ class WebService {
         
     }
     
-    func sendPost(data: Data, token: String, completion:((Error?, Bool?) -> Void)?) {
+    func uploadImage(image : UIImage, id: Int, completion: ((Bool?) -> Void)?) {
+        let url = "http://h829kaggr-001-site1.itempurl.com/api/pictures/post/\(id)"
+        print(url)
+        let imgData = UIImageJPEGRepresentation(image, 0.2)!
+        
+        //let parameters = ["name": rname] //Optional for extra parameter
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData, withName: "report\(id)",fileName: "report_image_\(id).jpg", mimeType: "image/jpg")
+            /*for (key, value) in parameters {
+                multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+            } //Optional for extra parameters*/
+        }, to: url) { (result) in
+                switch result {
+                case .success(let upload, _, _):
+                    
+                    upload.uploadProgress(closure: { (progress) in
+                        print("Upload Progress: \(progress.fractionCompleted)")
+                    })
+                    
+                    upload.responseJSON { response in
+                        print("value: \(response.result.value)")
+                        completion?(true)
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                }
+            }
+    }
+    
+    func sendPost(data: Data, token: String, completion:((Error?, Bool?, Data?) -> Void)?) {
         guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/report/post/") else {
             fatalError("Couldn't parse server address")
         }
@@ -156,13 +188,13 @@ class WebService {
             (data, response, error) in
             
             guard error == nil else {
-                completion?(error, false)
+                completion?(error, false, data)
                 return
             }
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
                 print("response \(utf8)")
-                completion?(nil, true)
+                completion?(nil, true, dato)
             } else {
                 print("No data in response")
             }

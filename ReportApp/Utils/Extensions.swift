@@ -47,6 +47,24 @@ public extension UIViewController {
             }
         }
     }
-    
-    
+
 }
+
+extension UIImageView {
+    func downloadFromUrl(id: Int) {
+        guard let imgURL: URL = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/pictures/get/\(id)") else { return }
+        URLSession.shared.dataTask(with: imgURL) {
+            data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else {return}
+            DispatchQueue.main.async {
+                self.image = image
+            }
+        }.resume()
+    }
+}
+

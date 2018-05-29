@@ -57,8 +57,13 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? Cell
 
         let report = mReports![indexPath.row]
+        if let id = report.ReportId {
+         cell?.mImage?.downloadFromUrl(id:id)
+        } else {
+            print(report.ReportId)
+            cell?.mImage?.image = UIImage(named: "light")
+        }
         
-        cell?.mImage?.image = UIImage(named: "light")
         cell?.mImage?.layer.cornerRadius = 8.0
         cell?.mImage?.clipsToBounds = true
         cell?.mStatusLabel?.text = report.Description

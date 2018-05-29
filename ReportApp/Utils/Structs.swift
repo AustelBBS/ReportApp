@@ -10,6 +10,10 @@ import Foundation
 
 typealias JSONArray = [ReportInfo]
 
+struct ResponseID : Codable {
+   var reportId : Int?
+}
+
 struct SignIn : Codable {
     var username : String?
     var email      : String?
@@ -33,7 +37,7 @@ struct Report : Codable {
 }
 
 struct ReportInfo : Codable {
-    var ReportID    : Int?
+    var ReportId    : Int?
     var DateTime    : String?
     var `Type`      : String?
     var Latitude    : Double?
