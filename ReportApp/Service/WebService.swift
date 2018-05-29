@@ -14,7 +14,7 @@ class WebService {
     
     func testLogin(token: String, method: String, completion:((Bool?) -> Void)?) {
         
-        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/usuario/testLogin/") else {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/user/testLogin/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -32,12 +32,7 @@ class WebService {
             }
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
                 print(utf8)
-                if utf8.range(of: "starbacks") != nil {
-                    print("Acceso valido!")
-                    completion?(true)
-                } else {
-                    completion?(false)
-                }
+                completion?(true)
             } else {
                 print("No data in response")
                 completion?(false)
@@ -52,7 +47,7 @@ class WebService {
     func login(data: Data, method: String, completion:((String?) -> Void)?) {
         
         
-        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/usuario/login/") else {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/user/login/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -73,12 +68,8 @@ class WebService {
             }
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                let start = utf8.index(utf8.startIndex, offsetBy: 17)
-                let end = utf8.index(utf8.endIndex, offsetBy: -2)
-                let range = start..<end
-                let token = String(utf8[range])
-                print(token)
-                completion?(token)
+               print(utf8)
+               completion?(utf8)
             } else {
                 print("No data in response")
             }
@@ -89,7 +80,7 @@ class WebService {
     }
     
     func register(data: Data, method: String, completion:((Error?) -> Void)?) {
-        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/usuario/post/") else {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/user/post/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -121,7 +112,7 @@ class WebService {
     }
     
     func loadReports(token: String, method: String, completion:((Data?) -> Void)?) {
-        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/reportes/vermios/") else {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/report/vermios/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -148,7 +139,7 @@ class WebService {
     }
     
     func sendPost(data: Data, token: String, completion:((Error?, Bool?) -> Void)?) {
-        guard let url = URL(string: "http://equipoponny-001-site1.btempurl.com/api/reportes/post/") else {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/report/post/") else {
             fatalError("Couldn't parse server address")
         }
         print(token)

@@ -61,8 +61,8 @@ class TableViewController: UITableViewController {
         cell?.mImage?.image = UIImage(named: "light")
         cell?.mImage?.layer.cornerRadius = 8.0
         cell?.mImage?.clipsToBounds = true
-        cell?.mStatusLabel?.text = report.descripcion
-        cell?.mDateLabel?.text = report.fechaHora
+        cell?.mStatusLabel?.text = report.Description
+        cell?.mDateLabel?.text = report.DateTime
 
         return cell!
     }

@@ -36,7 +36,7 @@ class LoginViewController: UIViewController {
         print("click")
         let service = WebService()
         let encoder = JSONEncoder()
-        let credentials = Login(nombreUsuario: userTF.text, passwordHash: passTF.text)
+        let credentials = Login(username: userTF.text, pass: passTF.text)
         var token : String?
         var done = false
         do {

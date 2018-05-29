@@ -51,7 +51,7 @@ class CreateAccountController: UIViewController {
             }
         }))
         let service = WebService()
-        let datos = SignIn(nombreUsuario: usuario.text, correo: correo.text, passwordHash: contrasena.text)
+        let datos = SignIn(username: usuario.text, email: correo.text, pass: contrasena.text)
         let encoder = JSONEncoder()
         do {
             let datos = try encoder.encode(datos)

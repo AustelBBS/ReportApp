@@ -11,14 +11,14 @@ import Foundation
 typealias JSONArray = [ReportInfo]
 
 struct SignIn : Codable {
-    var nombreUsuario : String?
-    var correo        : String?
-    var passwordHash  : String?
+    var username : String?
+    var email      : String?
+    var pass  : String?
 }
 
 struct Login : Codable {
-    var nombreUsuario : String?
-    var passwordHash  : String?
+    var username : String?
+    var pass  : String?
 }
 
 struct TestLogin : Codable {
@@ -26,21 +26,21 @@ struct TestLogin : Codable {
 }
 
 struct Report : Codable {
-    var descripcion : String?
-    var latitud     : Double?
-    var longitud    : Double?
-    var tipo        : String?
+    var description : String?
+    var latitude     : Double?
+    var longitude    : Double?
+    var type        : String?
 }
 
 struct ReportInfo : Codable {
-    var idReport  : Int?
-    var idUsuario : Int?
-    var fechaHora : String?
-    var tipo      : String?
-    var ubicacion : Geography?
-    var foto      : String?
-    var descripcion : String?
-    var solucionado : String?
+    var ReportID    : Int?
+    var DateTime    : String?
+    var `Type`      : String?
+    var Latitude    : Double?
+    var Longitude   : Double?
+    var Picture     : String?
+    var Description : String?
+    var Solved : Bool?
 }
 
 struct Geography : Codable {

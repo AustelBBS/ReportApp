@@ -19,7 +19,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var mSend : UIButton!
     @IBOutlet weak var topContainer: UIView!
     @IBOutlet weak var reportImageType: UIImageView!
-    @IBOutlet weak var camera: UIImageView!
+    @IBOutlet weak var camera: UIButton!
     @IBOutlet weak var locationInput: UITextField!
     @IBOutlet weak var gps: UIButton!
     @IBOutlet weak var descriptionInput: UITextView!
@@ -89,7 +89,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     @IBAction func sendReport(_ sender: UIButton) {
-        let params = Report(descripcion: descriptionInput.text, latitud: mLatitud, longitud: mLongitud, tipo: mReportType)
+        let params = Report(description: descriptionInput.text, latitude: mLatitud, longitude: mLongitud, type: mReportType)
+        uploadPhoto()
         let jsonEncoder = JSONEncoder()
         do {
             let data = try jsonEncoder.encode(params)
@@ -98,9 +99,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
                 if error != nil {
                     print(error as Any)
                 } else {
-                    DispatchQueue.main.async {
-                        self.displayAlert(msg: "Reporte enviado satisfactoriamente.")
-                    }
+                   print("Reporte enviado")
                 }
             }
         } catch {
@@ -109,11 +108,15 @@ class MainViewController: UIViewController, UITabBarDelegate {
         
     }
     
+    func uploadPhoto() {
+        
+    }
+    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
         if item == mLeftBtn {
             changeImage(name: "lamp")
-            mReportType = "alumbrado"
+            mReportType = "lighting"
         } else if item == mMiddleBtn {
             changeImage(name: "bache")
             mReportType = "bacheo"
@@ -149,6 +152,13 @@ class MainViewController: UIViewController, UITabBarDelegate {
         mLongitud = Double(localLocation.coordinate.longitude)
     }
     
+    @IBAction func selectPic(_ sender: UIButton) {
+        CameraManager.shared.showActionSheet(vc: self)
+        CameraManager.shared.imagePickedBlock =  {
+            (image) in
+            self.reportImageType.image = image
+        }
+    }
     
     
     

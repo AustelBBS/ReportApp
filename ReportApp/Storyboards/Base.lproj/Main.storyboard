@@ -118,10 +118,14 @@
                                         <rect key="frame" x="70" y="0.0" width="120" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo-camera" translatesAutoresizingMaskIntoConstraints="NO" id="g4g-EN-UJW">
-                                        <rect key="frame" x="236" y="112" width="16" height="16"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FxD-MM-XiB">
+                                        <rect key="frame" x="244" y="106" width="16" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="photo-camera"/>
+                                        <connections>
+                                            <action selector="selectPic:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kwn-0P-Kq3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="aSX-Yh-Uhk"/>
@@ -171,7 +175,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" red="0.71805506944656372" green="0.6872672438621521" blue="0.59428501129150391" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11c-40-HaU">
                                         <rect key="frame" x="40" y="179" width="160" height="30"/>
@@ -223,7 +227,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="camera" destination="g4g-EN-UJW" id="5Vs-3f-2et"/>
+                        <outlet property="camera" destination="FxD-MM-XiB" id="pgF-XR-txa"/>
                         <outlet property="descriptionInput" destination="8tL-vB-L2Z" id="foJ-VL-xxb"/>
                         <outlet property="gps" destination="aCB-N9-Qtg" id="wW0-HN-OX7"/>
                         <outlet property="leftConstraint" destination="tko-5U-YjN" id="4Zn-jZ-Hj7"/>

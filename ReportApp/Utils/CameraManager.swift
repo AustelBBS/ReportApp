@@ -10,7 +10,7 @@ import UIKit
 
 
 class CameraManager: NSObject{
-    static let shared = CameraHandler()
+    static let shared = CameraManager()
     
     fileprivate var currentVC: UIViewController!
     
@@ -39,6 +39,8 @@ class CameraManager: NSObject{
         }
         
     }
+    
+
     
     func showActionSheet(vc: UIViewController) {
         currentVC = vc
