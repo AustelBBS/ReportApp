@@ -11,6 +11,7 @@
 		1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600A6A7205BAE4A003733F2 /* TableViewController.swift */; };
 		1672DC1420A9509300A6BEA6 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672DC1320A9509300A6BEA6 /* CameraManager.swift */; };
 		1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1676C2FC20A18B8100D1E90D /* Extensions.swift */; };
+		167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167DEA2C20C503C5005F7591 /* CommentViewController.swift */; };
 		168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168A262F2085B3BA004582A6 /* LoginViewController.swift */; };
 		168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168A26312085BDB2004582A6 /* CreateAccountController.swift */; };
 		16937FB420A01509002489A8 /* Geolocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16937FB320A01509002489A8 /* Geolocalization.swift */; };
@@ -51,6 +52,7 @@
 		1600A6A7205BAE4A003733F2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		1672DC1320A9509300A6BEA6 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		1676C2FC20A18B8100D1E90D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		167DEA2C20C503C5005F7591 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		168A262F2085B3BA004582A6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		168A26312085BDB2004582A6 /* CreateAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountController.swift; sourceTree = "<group>"; };
 		16937FB320A01509002489A8 /* Geolocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geolocalization.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				168A262F2085B3BA004582A6 /* LoginViewController.swift */,
 				168A26312085BDB2004582A6 /* CreateAccountController.swift */,
 				1600A6A7205BAE4A003733F2 /* TableViewController.swift */,
+				167DEA2C20C503C5005F7591 /* CommentViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				1600A6A6205BAE30003733F2 /* Cell.swift in Sources */,
 				16937FB420A01509002489A8 /* Geolocalization.swift in Sources */,
 				168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */,
+				167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */,
 				168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */,
 				1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */,
 				1672DC1420A9509300A6BEA6 /* CameraManager.swift in Sources */,

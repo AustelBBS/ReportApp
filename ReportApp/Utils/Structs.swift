@@ -47,6 +47,10 @@ struct ReportInfo : Codable {
     var Solved : Bool?
 }
 
+struct Comment : Codable {
+    var comments : String?
+}
+
 struct Geography : Codable {
     var CoordinateSystemId : Int?
     var WellKnownText      : String?

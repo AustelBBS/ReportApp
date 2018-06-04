@@ -203,5 +203,38 @@ class WebService {
         task.resume()
     }
     
+    func sendComments(data: Data, token: String, completion:((Error?, Bool?, Data?) -> Void)?) {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/feedback/comments/") else {
+            fatalError("Couldn't parse server address")
+        }
+        print(token)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(token, forHTTPHeaderField: "access_token")
+        request.httpBody = data
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) {
+            (data, response, error) in
+            
+            guard error == nil else {
+                completion?(error, false, data)
+                return
+            }
+            
+            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                print("response \(utf8)")
+                completion?(nil, true, dato)
+            } else {
+                print("No data in response")
+            }
+            
+        }
+        task.resume()
+    }
+    
 }
 
