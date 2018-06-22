@@ -55,3 +55,8 @@ struct Geography : Codable {
     var CoordinateSystemId : Int?
     var WellKnownText      : String?
 }
+
+struct MOTD : Codable {
+    var Message : String?
+    var Date    : String?
+}

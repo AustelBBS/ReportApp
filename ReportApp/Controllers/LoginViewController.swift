@@ -15,8 +15,13 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var linkLnl: UILabel!
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
         self.hideKeyboardOnTouch()
         self.setKeyboardHandlers()
         userTF.placeholder = "Usuario"

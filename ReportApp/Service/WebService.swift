@@ -34,6 +34,8 @@ class WebService {
             }
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
                 print(utf8)
+                UserDefaults.standard.set(true, forKey: "loggedIn")
+                UserDefaults.standard.synchronize()
                 completion?(true)
             } else {
                 print("No data in response")
@@ -81,7 +83,7 @@ class WebService {
         
     }
     
-    func register(data: Data, method: String, completion:((Error?) -> Void)?) {
+    func register(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
         guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/user/post/") else {
             fatalError("Couldn't parse server address")
         }
@@ -99,16 +101,48 @@ class WebService {
             (data, response, error) in
             
             guard error == nil else {
-                completion?(error)
+                completion?(error, false, nil)
                 return
             }
             
             if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
                 print("response \(utf8)")
+                if utf8.starts(with: "{\"Message\":\"Errors}") {
+                    let message : String? = "error"
+                    completion?(nil, true, message)
+                }
+                let message : String? = "success"
+                completion?(nil, true, message)
             } else {
                 print("No data in response")
+                completion?(nil, false, nil)
             }
             
+        }
+        task.resume()
+    }
+    
+    func loadMOTD(token: String, method: String, completion:((Data?) -> Void)?) {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/feedback/motd/") else {
+            fatalError("Couldn't parse server address")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.setValue(token, forHTTPHeaderField: "access_token")
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) {
+            (data, response, error) in
+            guard error == nil else {
+                return
+            }
+            
+            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                print(utf8)
+                completion?(dato)
+            }
         }
         task.resume()
     }

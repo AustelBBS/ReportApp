@@ -28,30 +28,12 @@ class CameraManager: NSObject{
         
     }
     
-    func photoLibrary()
-    {
-        
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-            let myPickerController = UIImagePickerController()
-            myPickerController.delegate = self;
-            myPickerController.sourceType = .photoLibrary
-            currentVC.present(myPickerController, animated: true, completion: nil)
-        }
-        
-    }
-    
-
-    
     func showActionSheet(vc: UIViewController) {
         currentVC = vc
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (alert:UIAlertAction!) -> Void in
             self.camera()
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (alert:UIAlertAction!) -> Void in
-            self.photoLibrary()
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

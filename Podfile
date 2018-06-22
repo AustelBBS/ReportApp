@@ -8,6 +8,7 @@ target 'ReportApp' do
 
   # Pods for ReportApp
   pod 'Alamofire', '~> 4.7'
+  pod "NumericPicker"
   target 'ReportAppTests' do
     inherit! :search_paths
     # Pods for testing

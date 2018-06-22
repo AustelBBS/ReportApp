@@ -11,6 +11,7 @@
 		1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600A6A7205BAE4A003733F2 /* TableViewController.swift */; };
 		1672DC1420A9509300A6BEA6 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672DC1320A9509300A6BEA6 /* CameraManager.swift */; };
 		1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1676C2FC20A18B8100D1E90D /* Extensions.swift */; };
+		167DD24620C6CF10001A96E4 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167DD24520C6CF10001A96E4 /* Navigator.swift */; };
 		167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167DEA2C20C503C5005F7591 /* CommentViewController.swift */; };
 		168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168A262F2085B3BA004582A6 /* LoginViewController.swift */; };
 		168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168A26312085BDB2004582A6 /* CreateAccountController.swift */; };
@@ -23,6 +24,7 @@
 		16BDA5042058E30700C9B015 /* ReportAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA5032058E30700C9B015 /* ReportAppTests.swift */; };
 		16BDA50F2058E30700C9B015 /* ReportAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA50E2058E30700C9B015 /* ReportAppUITests.swift */; };
 		16CD1DEE20A1F15900509764 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CD1DED20A1F15900509764 /* Structs.swift */; };
+		16DB107D20DD32630003C8F5 /* FakeSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */; };
 		16F26EA72099765B0074E13B /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F26EA62099765B0074E13B /* WebService.swift */; };
 		38A432342D663B7FF80726D6 /* Pods_ReportAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60BF619509FA9ED5E45D63C /* Pods_ReportAppTests.framework */; };
 		CEB7D60E4935F68EABA7B8F0 /* Pods_ReportApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D146B2E437EB6DE447080B3 /* Pods_ReportApp.framework */; };
@@ -52,6 +54,7 @@
 		1600A6A7205BAE4A003733F2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		1672DC1320A9509300A6BEA6 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		1676C2FC20A18B8100D1E90D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		167DD24520C6CF10001A96E4 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		167DEA2C20C503C5005F7591 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		168A262F2085B3BA004582A6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		168A26312085BDB2004582A6 /* CreateAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		16BDA50E2058E30700C9B015 /* ReportAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportAppUITests.swift; sourceTree = "<group>"; };
 		16BDA5102058E30700C9B015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16CD1DED20A1F15900509764 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
+		16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSplashViewController.swift; sourceTree = "<group>"; };
 		16F26EA62099765B0074E13B /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		372512FDAD5ABDDA0EFDF2E7 /* Pods-ReportAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReportAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReportAppTests/Pods-ReportAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		4D146B2E437EB6DE447080B3 /* Pods_ReportApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReportApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +121,7 @@
 				168A26312085BDB2004582A6 /* CreateAccountController.swift */,
 				1600A6A7205BAE4A003733F2 /* TableViewController.swift */,
 				167DEA2C20C503C5005F7591 /* CommentViewController.swift */,
+				16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 				1676C2FC20A18B8100D1E90D /* Extensions.swift */,
 				16CD1DED20A1F15900509764 /* Structs.swift */,
 				1672DC1320A9509300A6BEA6 /* CameraManager.swift */,
+				167DD24520C6CF10001A96E4 /* Navigator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -387,10 +393,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReportApp/Pods-ReportApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/NumericPicker/NumericPicker.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NumericPicker.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -443,6 +451,7 @@
 				16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */,
 				1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */,
 				16CD1DEE20A1F15900509764 /* Structs.swift in Sources */,
+				167DD24620C6CF10001A96E4 /* Navigator.swift in Sources */,
 				16BDA4EF2058E30700C9B015 /* AppDelegate.swift in Sources */,
 				16F26EA72099765B0074E13B /* WebService.swift in Sources */,
 				1600A6A6205BAE30003733F2 /* Cell.swift in Sources */,
@@ -451,6 +460,7 @@
 				167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */,
 				168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */,
 				1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */,
+				16DB107D20DD32630003C8F5 /* FakeSplashViewController.swift in Sources */,
 				1672DC1420A9509300A6BEA6 /* CameraManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

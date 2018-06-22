@@ -14,6 +14,7 @@ class CreateAccountController: UIViewController {
     @IBOutlet weak var correo: UITextField!
     @IBOutlet weak var contrasena : UITextField!
     
+    @IBOutlet weak var confirmarContrasena: UITextField!
     @IBOutlet weak var registrarBtn: UIButton!
     @IBOutlet weak var cancelarBtn: UIButton!
     
@@ -35,38 +36,57 @@ class CreateAccountController: UIViewController {
     }
     
     @objc func regresar() {
-        _ = navigationController?.popToRootViewController(animated: true)
+        performSegue(withIdentifier: "goBackToLogin", sender: self)
     }
     
     @objc func registrar() {
-        let alert = UIAlertController(title: "Ok", message: "Registro exitoso!", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+        let pass = contrasena.text
+        let confirmPass = confirmarContrasena.text
+        if usuario.text != "" || correo.text != "" || pass != "" || confirmPass != "" {
+            if pass == confirmPass {
+                let service = WebService()
+                let datos = SignIn(username: usuario.text, email: correo.text, pass: contrasena.text)
+                let encoder = JSONEncoder()
+                do {
+                    let datos = try encoder.encode(datos)
+                    DispatchQueue.main.async {
+                        service.register(data: datos, method: "POST") { (error, success, response) in
+                            if let error = error {
+                                fatalError(error.localizedDescription)
+                            }
+                            if success! && response != "error"{
+                                self.displayAlert(title: "Ok", message: "Registro Exitoso!", style: .default, actionTitle: "Ok")
+                            } else {
+                                self.displayAlert(title: "Error", message: "Usuario o correo ya registrados!", style: .default, actionTitle: "Ok")
+                            }
+                        }
+                    }
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
+            } else {
+                displayAlert(title: "Error", message: "Las contraseñas no coinciden.", style: .cancel, actionTitle: "Ok")
+            }
+        } else {
+            displayAlert(title: "Campo vacío", message: "Por favor llena todos los campos.", style: .cancel, actionTitle: "Ok")
+        }
+        
+    }
+    
+    func displayAlert(title: String, message: String, style: UIAlertActionStyle, actionTitle : String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: actionTitle, style: style, handler: { (action) in
             switch action.style {
             case .default:
-                _ = self.navigationController?.popToRootViewController(animated: true)
-            case .cancel :
+                self.performSegue(withIdentifier: "goBackToLogin", sender: self)
+            case .cancel:
                 print("cancel")
-            case .destructive :
+            case .destructive:
                 print("destructive")
             }
         }))
-        let service = WebService()
-        let datos = SignIn(username: usuario.text, email: correo.text, pass: contrasena.text)
-        let encoder = JSONEncoder()
-        do {
-            let datos = try encoder.encode(datos)
-            DispatchQueue.main.async {
-                service.register(data: datos, method: "POST") { (error) in
-                    if let error = error {
-                        fatalError(error.localizedDescription)
-                    }
-                }
-            }
-            self.present(alert, animated: true, completion: nil)
-        } catch {
-            print(error.localizedDescription)
-        }
-        
+        self.present(alert, animated: true, completion: nil)
     }
     
     

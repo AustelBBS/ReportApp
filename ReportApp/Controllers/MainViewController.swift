@@ -29,6 +29,9 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var mLeftBtn: UITabBarItem!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var mExitBtn: UIButton!
+    
+    
+    
     var mLatitud : Double?
     var mLongitud : Double?
     var mReportType : String?
@@ -38,7 +41,9 @@ class MainViewController: UIViewController, UITabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
         prepareController()
+        showMOTD()
     }
     
     func prepareController() {
@@ -60,6 +65,23 @@ class MainViewController: UIViewController, UITabBarDelegate {
         mExitBtn.layer.cornerRadius = 8.0
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
+        descriptionInput.placeholder = "¿Que más nos quieres decir?"
+    }
+    
+    func showMOTD() {
+        let service = WebService()
+        service.loadMOTD(token:  UserDefaults.standard.string(forKey: "UserToken")!, method: "GET") {
+            data in
+            let decoder = JSONDecoder()
+            do {
+                let response = try decoder.decode(MOTD.self, from: data!)
+                DispatchQueue.main.async {
+                    self.displayAlert(msg: response.Message!, title: "Mensaje del día")
+                }
+            } catch {
+                print(error)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,9 +105,9 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     @IBAction func logout(_ sender: UIButton) {
-        UserDefaults.standard.set("", forKey: "UserToken")
+        UserDefaults.standard.set(false, forKey: "loggedIn")
         UserDefaults.standard.synchronize()
-        _ = navigationController?.popToRootViewController(animated: true)
+        performSegue(withIdentifier: "unwindToLogin", sender: self)
     }
     
     @IBAction func sendReport(_ sender: UIButton) {
@@ -115,7 +137,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
         service.uploadImage(image: reportImageType.image!, id: id) {
             done in
             if done! {
-                self.displayAlert(msg: "Reporte enviado!")
+                self.displayAlert(msg: "Reporte enviado!", title: "Estado")
                 self.resetUI()
             }
         }
@@ -154,8 +176,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
         }
     }
     
-    func displayAlert(msg: String) {
-        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+    func displayAlert(msg: String, title: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.locationInput.text = ""
         self.descriptionInput.text = ""
@@ -176,8 +198,14 @@ class MainViewController: UIViewController, UITabBarDelegate {
         }
     }
     
-    
-    
+}
+
+extension MainViewController {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if let controller = viewController as? FakeSplashViewController {
+            controller.performSegue(withIdentifier: "noSkip", sender: self)
+        }
+    }
 }
 
 
