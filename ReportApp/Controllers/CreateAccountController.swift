@@ -42,7 +42,7 @@ class CreateAccountController: UIViewController {
     @objc func registrar() {
         let pass = contrasena.text
         let confirmPass = confirmarContrasena.text
-        if usuario.text != "" || correo.text != "" || pass != "" || confirmPass != "" {
+        if usuario.text != "" && correo.text != "" && pass != "" && confirmPass != "" {
             if pass == confirmPass {
                 let service = WebService()
                 let datos = SignIn(username: usuario.text, email: correo.text, pass: contrasena.text)

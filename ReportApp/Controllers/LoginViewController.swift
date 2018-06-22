@@ -15,7 +15,11 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var linkLnl: UILabel!
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func unwindFromCreate(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func unwindFromMain(segue: UIStoryboardSegue) {
         
     }
     

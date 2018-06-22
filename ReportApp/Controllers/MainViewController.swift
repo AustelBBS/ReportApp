@@ -107,6 +107,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBAction func logout(_ sender: UIButton) {
         UserDefaults.standard.set(false, forKey: "loggedIn")
         UserDefaults.standard.synchronize()
+        print("logging off")
         performSegue(withIdentifier: "unwindToLogin", sender: self)
     }
     
@@ -122,9 +123,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
                     print(error as Any)
                 }
                 if success! {
-                    let responseId = try! jsonDecoder.decode(ResponseID.self, from: response!)
-                    print(responseId.reportId!)
-                    self.uploadPhoto(id: responseId.reportId!)
+                    let responseId = try! jsonDecoder.decode(ReportInfo.self, from: response!)
+                    self.uploadPhoto(id: responseId.ReportId!)
                 }
             }
         } catch {
@@ -198,14 +198,12 @@ class MainViewController: UIViewController, UITabBarDelegate {
         }
     }
     
+    @IBAction func showHelp(_ sender: UIBarButtonItem) {
+        displayAlert(msg: "Función no implementada", title: "Trabajo en progreso")
+    }
+    
+    
 }
 
-extension MainViewController {
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if let controller = viewController as? FakeSplashViewController {
-            controller.performSegue(withIdentifier: "noSkip", sender: self)
-        }
-    }
-}
 
 

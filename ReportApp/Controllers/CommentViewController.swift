@@ -14,6 +14,7 @@ class CommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardOnTouch()
     }
 
     @IBAction func sendComment(_ sender: UIButton) {

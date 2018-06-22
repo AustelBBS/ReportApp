@@ -97,7 +97,7 @@ extension UITextView : UITextViewDelegate {
     
     public func textViewDidChange(_ textView: UITextView) {
         if let placeholderLabel = self.viewWithTag(100) as? UILabel{
-            placeholderLabel.isHidden = self.text.characters.count > 0
+            placeholderLabel.isHidden = self.text.count > 0
         }
     }
     
