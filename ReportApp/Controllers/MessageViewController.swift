@@ -1,38 +1,43 @@
 //
-//  CommentViewController.swift
+//  MessageViewController.swift
 //  ReportApp
 //
-//  Created by DonauMorgen on 04/06/18.
+//  Created by DonauMorgen on 03/07/18.
 //  Copyright © 2018 Los Ponis. All rights reserved.
 //
 
 import UIKit
 
-class CommentViewController: UIViewController {
+class MessageViewController: UIViewController {
 
     @IBOutlet weak var mComment : UITextField?
+    @IBOutlet weak var mMsgHistory : UITextView?
+    
+    var reportId : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnTouch()
     }
-
+    
     @IBAction func sendComment(_ sender: UIButton) {
         let encoder = JSONEncoder()
-        let params = Comment(comments: mComment?.text)
+        let params = SendMsg(reportId: reportId, body: mComment?.text)
         do {
             let data = try encoder.encode(params)
             let service = WebService()
             let token = UserDefaults.standard.string(forKey: "UserToken")!
-            service.sendComments(data: data, token: token) {
+            let user = UserDefaults.standard.string(forKey: "user")!
+            service.sendMessage(data: data, method: "POST") {
                 error, done, response in
                 if error != nil {
-                    print(error!)
+                    print(error?.localizedDescription as Any)
                 }
                 if done! {
                     DispatchQueue.main.async {
-                        self.displayAlert(msg: "Sugerencia enviada correctamente!")
+                        self.mMsgHistory?.text.append("\(user):\(self.mComment?.text! ?? "default")\n")
                         self.mComment?.text = ""
+                        print(response!)
                     }
                 }
                 

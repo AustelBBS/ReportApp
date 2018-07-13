@@ -51,6 +51,16 @@ struct Comment : Codable {
     var comments : String?
 }
 
+struct SendMsg : Codable {
+    var reportId : Int?
+    var body : String?
+}
+
+struct DonwloadMsg : Codable {
+    var reportId : Int?
+    var datetime : String?
+}
+
 struct Geography : Codable {
     var CoordinateSystemId : Int?
     var WellKnownText      : String?

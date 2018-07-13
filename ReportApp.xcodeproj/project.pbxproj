@@ -16,6 +16,7 @@
 		168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168A262F2085B3BA004582A6 /* LoginViewController.swift */; };
 		168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168A26312085BDB2004582A6 /* CreateAccountController.swift */; };
 		16937FB420A01509002489A8 /* Geolocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16937FB320A01509002489A8 /* Geolocalization.swift */; };
+		1696B6BE20EBCEB90024FFF7 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1696B6BD20EBCEB90024FFF7 /* MessageViewController.swift */; };
 		16BDA4EF2058E30700C9B015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA4EE2058E30700C9B015 /* AppDelegate.swift */; };
 		16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BDA4F02058E30700C9B015 /* MainViewController.swift */; };
 		16BDA4F42058E30700C9B015 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16BDA4F22058E30700C9B015 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		168A262F2085B3BA004582A6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		168A26312085BDB2004582A6 /* CreateAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountController.swift; sourceTree = "<group>"; };
 		16937FB320A01509002489A8 /* Geolocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geolocalization.swift; sourceTree = "<group>"; };
+		1696B6BD20EBCEB90024FFF7 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		16BDA4EB2058E30700C9B015 /* ReportApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReportApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16BDA4EE2058E30700C9B015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16BDA4F02058E30700C9B015 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				168A26312085BDB2004582A6 /* CreateAccountController.swift */,
 				1600A6A7205BAE4A003733F2 /* TableViewController.swift */,
 				167DEA2C20C503C5005F7591 /* CommentViewController.swift */,
+				1696B6BD20EBCEB90024FFF7 /* MessageViewController.swift */,
 				16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */,
 				16DB107E20DD5C210003C8F5 /* SettingsViewController.swift */,
 			);
@@ -461,6 +464,7 @@
 				16937FB420A01509002489A8 /* Geolocalization.swift in Sources */,
 				16DB107F20DD5C210003C8F5 /* SettingsViewController.swift in Sources */,
 				168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */,
+				1696B6BE20EBCEB90024FFF7 /* MessageViewController.swift in Sources */,
 				167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */,
 				168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */,
 				1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */,

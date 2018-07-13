@@ -50,7 +50,6 @@ class WebService {
     
     func login(data: Data, method: String, completion:((String?) -> Void)?) {
         
-        
         guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/user/login/") else {
             fatalError("Couldn't parse server address")
         }
@@ -82,6 +81,85 @@ class WebService {
         task.resume()
         
     }
+    
+    func getMessages(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/messages/get/") else {
+            fatalError("Couldn't parse server address")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        request.httpBody = data
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) {
+            (data, response, error) in
+            
+            guard error == nil else {
+                completion?(error, false, nil)
+                return
+            }
+            
+            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                print("response \(utf8)")
+                if utf8.starts(with: "{\"Message\":\"Errors}") {
+                    let message : String? = "error"
+                    completion?(nil, true, message)
+                }
+                let message : String? = "success"
+                completion?(nil, true, message)
+            } else {
+                print("No data in response")
+                completion?(nil, false, nil)
+            }
+            
+        }
+        task.resume()
+    }
+    
+    func sendMessage(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
+        guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/messages/post/") else {
+            fatalError("Couldn't parse server address")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        request.httpBody = data
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        let task = session.dataTask(with: request) {
+            (data, response, error) in
+            
+            guard error == nil else {
+                completion?(error, false, nil)
+                return
+            }
+            
+            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                print("response \(utf8)")
+                if utf8.starts(with: "{\"Message\":\"Errors}") {
+                    let message : String? = "error"
+                    completion?(nil, true, message)
+                }
+                let message : String? = "success"
+                completion?(nil, true, message)
+            } else {
+                print("No data in response")
+                completion?(nil, false, nil)
+            }
+            
+        }
+        task.resume()
+    }
+    
     
     func register(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
         guard let url = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/user/post/") else {
@@ -195,7 +273,7 @@ class WebService {
                     })
                     
                     upload.responseJSON { response in
-                        print("value: \(response.result.value)")
+                        print("value: \((response.result.value)!)")
                         completion?(true)
                     }
                 case .failure(let encodingError):

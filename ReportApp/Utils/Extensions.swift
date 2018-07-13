@@ -16,17 +16,12 @@ public extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    func setKeyboardHandlers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-    }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc func didKeyboardShowed(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= keyboardSize.height
@@ -37,7 +32,7 @@ public extension UIViewController {
         }
     }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc func didKeyboardHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y < 0{
                 self.view.frame.origin.y += keyboardSize.height
@@ -122,7 +117,7 @@ extension UITextView : UITextViewDelegate {
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.tag = 100
         
-        placeholderLabel.isHidden = self.text.characters.count > 0
+        placeholderLabel.isHidden = self.text.utf8CString.count > 0
         
         self.addSubview(placeholderLabel)
         self.resizePlaceholder()

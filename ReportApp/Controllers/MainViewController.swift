@@ -49,7 +49,6 @@ class MainViewController: UIViewController, UITabBarDelegate {
     func prepareController() {
         mReportType = "lighting"
         self.hideKeyboardOnTouch()
-        self.setKeyboardHandlers()
         gpsManager = Geolocalization()
         gpsManager?.requestLocation()
         if let localLocation = gpsManager?.requestCoords(){
@@ -108,7 +107,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
         UserDefaults.standard.set(false, forKey: "loggedIn")
         UserDefaults.standard.synchronize()
         print("logging off")
-        performSegue(withIdentifier: "unwindToLogin", sender: self)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func sendReport(_ sender: UIButton) {

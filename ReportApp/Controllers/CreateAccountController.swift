@@ -24,20 +24,16 @@ class CreateAccountController: UIViewController {
         usuario.placeholder = "Nombre de usuario"
         correo.placeholder = "Correo"
         contrasena.placeholder = "Contraseña"
-        
-        cancelarBtn.addTarget(self, action: #selector(CreateAccountController.regresar), for: .touchUpInside)
         registrarBtn.addTarget(self, action: #selector(CreateAccountController.registrar), for: .touchUpInside)
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func cancelRegistration(_ sender: Any) {
+        print("Clicked")
+        self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func regresar() {
-        performSegue(withIdentifier: "goBackToLogin", sender: self)
-    }
     
     @objc func registrar() {
         let pass = contrasena.text
@@ -88,7 +84,5 @@ class CreateAccountController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
 }
 
