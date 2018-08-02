@@ -12,7 +12,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var userTF: UITextField!
     @IBOutlet weak var passTF: UITextField!
-    
+    @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var linkLnl: UILabel!
     
     var activeField : UITextField?
@@ -28,11 +28,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.createAccount))
         linkLnl.isUserInteractionEnabled = true
         linkLnl.addGestureRecognizer(tap)
+        loginBtn.layer.cornerRadius = 8.0
         
     }
     
     func setDelegate() {
-        print("setDelegates")
         self.userTF.delegate = self
         self.passTF.delegate = self
         self.activeField?.delegate = self

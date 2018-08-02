@@ -31,6 +31,7 @@
 		38A432342D663B7FF80726D6 /* Pods_ReportAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60BF619509FA9ED5E45D63C /* Pods_ReportAppTests.framework */; };
 		CEB7D60E4935F68EABA7B8F0 /* Pods_ReportApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D146B2E437EB6DE447080B3 /* Pods_ReportApp.framework */; };
 		D4B169875027C9C35EBDCBEE /* Pods_ReportAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CCDE48AEA240B78142F038 /* Pods_ReportAppUITests.framework */; };
+		E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23777DC2110340F0057EE29 /* PopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		C60BF619509FA9ED5E45D63C /* Pods_ReportAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReportAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2487CD4EB94C64A4C88DF0 /* Pods-ReportAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReportAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReportAppUITests/Pods-ReportAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DB1E7101D28D372D6328538C /* Pods-ReportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReportApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReportApp/Pods-ReportApp.release.xcconfig"; sourceTree = "<group>"; };
+		E23777DC2110340F0057EE29 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				1696B6BD20EBCEB90024FFF7 /* MessageViewController.swift */,
 				16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */,
 				16DB107E20DD5C210003C8F5 /* SettingsViewController.swift */,
+				E23777DC2110340F0057EE29 /* PopupViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -399,12 +402,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReportApp/Pods-ReportApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/NumericPicker/NumericPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NumericPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -456,6 +459,7 @@
 			files = (
 				16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */,
 				1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */,
+				E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */,
 				16CD1DEE20A1F15900509764 /* Structs.swift in Sources */,
 				167DD24620C6CF10001A96E4 /* Navigator.swift in Sources */,
 				16BDA4EF2058E30700C9B015 /* AppDelegate.swift in Sources */,

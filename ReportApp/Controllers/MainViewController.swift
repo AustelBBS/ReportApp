@@ -29,6 +29,9 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var mLeftBtn: UITabBarItem!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var mExitBtn: UIButton!
+    @IBOutlet weak var directory: UIButton!
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var motd: UILabel!
     
     
     
@@ -65,6 +68,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
         descriptionInput.placeholder = "¿Que más nos quieres decir?"
+        directory.layer.cornerRadius = 8.0
     }
     
     func showMOTD() {
@@ -75,6 +79,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
             do {
                 let response = try decoder.decode(MOTD.self, from: data!)
                 DispatchQueue.main.async {
+                    self.userLabel.text = UserDefaults.standard.string(forKey: "user")
+                    self.motd.text = response.Message
                     self.displayAlert(msg: response.Message!, title: "Mensaje del día")
                 }
             } catch {
@@ -95,7 +101,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
                 self.view.layoutIfNeeded()
             })
         } else {
-            leftConstraint.constant = -150
+            leftConstraint.constant = -200
             UIView.animate(withDuration: 0.3, animations: {
                 self.view.layoutIfNeeded()
             })

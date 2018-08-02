@@ -75,11 +75,13 @@ class CreateAccountController: UIViewController {
         alert.addAction(UIAlertAction(title: actionTitle, style: style, handler: { (action) in
             switch action.style {
             case .default:
-                self.performSegue(withIdentifier: "goBackToLogin", sender: self)
+                self.navigationController?.popViewController(animated: true)
             case .cancel:
                 print("cancel")
+                self.navigationController?.popViewController(animated: true)
             case .destructive:
                 print("destructive")
+                self.navigationController?.popViewController(animated: true)
             }
         }))
         self.present(alert, animated: true, completion: nil)

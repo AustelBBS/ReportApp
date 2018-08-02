@@ -12,6 +12,8 @@ class TableViewController: UITableViewController {
     var mReports : [ReportInfo]?
     let service = WebService()
     var reportId : Int?
+    var dateTime : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let token = UserDefaults.standard.string(forKey: "UserToken")
@@ -80,6 +82,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let report = mReports![indexPath.row]
         reportId = report.ReportId
+        dateTime = report.DateTime
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "toChat", sender: self)
         }
@@ -91,6 +94,7 @@ class TableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? MessageViewController {
             destination.reportId = reportId
+            destination.dateTime = dateTime
         }
     }
  

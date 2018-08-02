@@ -14,10 +14,27 @@ class MessageViewController: UIViewController {
     @IBOutlet weak var mMsgHistory : UITextView?
     
     var reportId : Int?
+    var dateTime : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnTouch()
+        downloadPreviousMessages()
+    }
+    
+    func downloadPreviousMessages() {
+        let service = WebService()
+       
+            let params : [String : String] = ["reportId" :"\(reportId!)", "datetime": dateTime!]
+            let decoder = JSONDecoder()
+            service.getMessages(data: params, method: "GET") { (error, done, data) in
+                do {
+                    let decodedData = try decoder.decode(DownloadMsg.self, from: data!)
+                    print(decodedData)
+                } catch {
+                    print(error)
+                }
+        }
     }
     
     @IBAction func sendComment(_ sender: UIButton) {

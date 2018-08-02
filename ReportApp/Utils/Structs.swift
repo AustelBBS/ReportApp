@@ -56,9 +56,12 @@ struct SendMsg : Codable {
     var body : String?
 }
 
-struct DonwloadMsg : Codable {
-    var reportId : Int?
-    var datetime : String?
+
+struct DownloadMsg : Decodable {
+    var UserName : String
+    var Body : String
+    var DateTime : String
+    var ReportId : Int
 }
 
 struct Geography : Codable {
