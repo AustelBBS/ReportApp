@@ -6,6 +6,7 @@
 //  Copyright © 2018 Los Ponis. All rights reserved.
 //
 
+
 import UIKit
 
 class MessageViewController: UIViewController {
@@ -20,6 +21,9 @@ class MessageViewController: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardOnTouch()
         downloadPreviousMessages()
+        if let title = CustomDateFormatter.dateTimeFrom(isoDate: dateTime!){
+            self.title = title
+        }
     }
     
     func downloadPreviousMessages() {

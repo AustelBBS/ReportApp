@@ -70,8 +70,9 @@ class TableViewController: UITableViewController {
         cell?.mImage?.layer.cornerRadius = 8.0
         cell?.mImage?.clipsToBounds = true
         cell?.mStatusLabel?.text = report.Description
-        cell?.mDateLabel?.text = report.DateTime
-
+        if let d =  CustomDateFormatter.dateTimeFrom(isoDate: report.DateTime!){
+            cell?.mDateLabel?.text = d
+        }
         return cell!
     }
     
