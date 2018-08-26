@@ -1,0 +1,17 @@
+
+.DS_Store
+Podfile.lock
+*.lock
+Podfile.lock
+Pods/Alamofire/README.md
+Pods/Alamofire/Source/Request.swift
+Pods/Alamofire/Source/ServerTrustPolicy.swift
+Pods/Alamofire/Source/SessionManager.swift
+Pods/Alamofire/Source/TaskDelegate.swift
+Pods/Manifest.lock
+*.xcbkptlist
+*.lock
+Podfile.lock
+*.xcconfig
+*.modulemap
+*.lock

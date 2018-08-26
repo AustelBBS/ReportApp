@@ -11,8 +11,7 @@ import UIKit
 class TableViewController: UITableViewController {
     var mReports : [ReportInfo]?
     let service = WebService()
-    var reportId : Int?
-    var dateTime : String?
+    var report : ReportInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,9 +80,7 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let report = mReports![indexPath.row]
-        reportId = report.ReportId
-        dateTime = report.DateTime
+        report = mReports![indexPath.row]
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "toChat", sender: self)
         }
@@ -94,8 +91,7 @@ class TableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? MessageViewController {
-            destination.reportId = reportId
-            destination.dateTime = dateTime
+            destination.report = report
         }
     }
  

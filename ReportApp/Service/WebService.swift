@@ -129,7 +129,7 @@ class WebService {
     }
     
     func sendMessage(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/messages/post/") else {
+        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/messages/post/") else {
             fatalError("Couldn't parse server address")
         }
         
