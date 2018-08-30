@@ -12,17 +12,16 @@ import UIKit
 class MessageCell: UITableViewCell {
     
     public static let reuseId: String = "messageCell"
-    @IBOutlet weak var mStackView: UIStackView!
-    @IBOutlet weak var mMessageLabel: UIButton!
+    @IBOutlet weak var mMessageLabel: UILabel!
+    @IBOutlet weak var mWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mBubbleView: UIView!
     
+    @IBOutlet weak var mLeadingSpaceConstraint: NSLayoutConstraint!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        mMessageLabel.layer.cornerRadius = 10
-        mMessageLabel.layer.masksToBounds = true
-        
+        mBubbleView.layer.cornerRadius = 7	
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,3 +31,4 @@ class MessageCell: UITableViewCell {
     }
     
 }
+
