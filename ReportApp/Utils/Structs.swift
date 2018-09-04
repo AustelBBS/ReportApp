@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 typealias JSONArray = [ReportInfo]
 
 struct ResponseID : Codable {
@@ -72,4 +72,9 @@ struct Geography : Codable {
 struct MOTD : Codable {
     var Message : String?
     var Date    : String?
+}
+
+struct CoachMarkStruct{
+    var message : String
+    var view : UIView?
 }

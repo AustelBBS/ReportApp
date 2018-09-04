@@ -8,8 +8,8 @@
 
 import UIKit
 import CoreLocation
-
-class MainViewController: UIViewController, UITabBarDelegate {
+import Instructions
+class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     //hola
     @IBOutlet weak var mImageLogo: UIImageView!
     @IBOutlet weak var leftConstraint: NSLayoutConstraint!
@@ -33,7 +33,15 @@ class MainViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var motd: UILabel!
     
-    
+    @IBOutlet weak var coachPlaceholder: UIView!
+    /*
+     
+     
+     Toca para ver los detalles o enviar un mensaje a un administrador.
+     En esta sección se muestra tu historial de reportes enviados.
+     
+     
+     */
     
     var mLatitud : Double?
     var mLongitud : Double?
@@ -41,12 +49,59 @@ class MainViewController: UIViewController, UITabBarDelegate {
     var isMenuHidden = true
     var gpsManager : Geolocalization?
     let service = WebService()
+    let coachMarksController = CoachMarksController()
+    var coachMarksArray = [CoachMarkStruct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        self.coachMarksController.dataSource = self
+        self.coachMarksController.overlay.allowTap = true
+        self.coachMarksController.overlay.color = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 0.6776541096)
+        loadCoachMarkArray()
         prepareController()
         showMOTD()
+    }
+    
+    func loadCoachMarkArray(){
+        coachMarksArray.append(CoachMarkStruct(message: "Con esta aplicación podrás enviar reportes sobre fallas en el alumbrado público, baches en las calles o basura a las autoridades municipales.", view: coachPlaceholder))
+        coachMarksArray.append(CoachMarkStruct(message: "Puedes agregar una foto a tu reporte.", view: topContainer))
+        coachMarksArray.append(CoachMarkStruct(message: "Si te es posible, trata de que se vean referencias en la foto.", view: topContainer))
+        coachMarksArray.append(CoachMarkStruct(message: "Con el GPS se envía la ubicación exacta de tu reporte.", view: gps))
+        coachMarksArray.append(CoachMarkStruct(message: "También puedes incluir una descripción, comentarios o referencias.", view: descriptionInput))
+        coachMarksArray.append(CoachMarkStruct(message: "No olvides indicar qué tipo de reporte es:", view: tabBar))
+        coachMarksArray.append(CoachMarkStruct(message: "Presiona aquí para enviar tu reporte.", view: send))
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.viewWillDisappear(animated)
+        self.coachMarksController.stop(immediately: true)
+    }
+    
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return coachMarksArray.count
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        if let view = coachMarksArray[index].view{
+            return coachMarksController.helper.makeCoachMark(for: view)
+        }else{
+            let c = coachMarksController.helper.makeCoachMark(for: self.view, pointOfInterest:   CGPoint(x: 200, y:700), cutoutPathMaker: nil)
+             //CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
+            return c
+        }
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+        var coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: index != 0, withNextText: false, arrowOrientation:
+            coachMark.arrowOrientation)
+
+        coachViews.bodyView.hintLabel.text = coachMarksArray[index].message
+        coachViews.bodyView.nextLabel.text = nil
+        
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+        
     }
     
     func prepareController() {
@@ -204,7 +259,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     
     @IBAction func showHelp(_ sender: UIBarButtonItem) {
-        displayAlert(msg: "Función no implementada", title: "Trabajo en progreso")
+        self.coachMarksController.start(on: self)
     }
     
     

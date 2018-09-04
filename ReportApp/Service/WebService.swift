@@ -16,7 +16,7 @@ class WebService {
     
     func testLogin(token: String, method: String, completion:((Bool?) -> Void)?) {
         
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/user/testLogin/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/user/testLogin/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -50,7 +50,7 @@ class WebService {
     
     func login(data: Data, method: String, completion:((String?) -> Void)?) {
         
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/user/login/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/user/login/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -84,7 +84,7 @@ class WebService {
     
     func getMessages(data: [String: String], method: String, completion:((Error?, Bool?, Data?) -> Void)?) {
         
-        var url = URLComponents(string: "https://reportappuruapan.azurewebsites.net/api/messages/get")
+        var url = URLComponents(string: "http://quipsquit-001-site1.itempurl.com/api/messages/get")
         
         var items = [URLQueryItem]()
         
@@ -129,7 +129,7 @@ class WebService {
     }
     
     func sendMessage(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/messages/post/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/messages/post/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -169,7 +169,7 @@ class WebService {
     
     
     func register(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/user/post/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/user/post/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -208,7 +208,7 @@ class WebService {
     }
     
     func loadMOTD(token: String, method: String, completion:((Data?) -> Void)?) {
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/feedback/motd/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/feedback/motd/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -233,7 +233,7 @@ class WebService {
     }
     
     func loadReports(token: String, method: String, completion:((Data?) -> Void)?) {
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/report/get/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/report/get/") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -260,7 +260,7 @@ class WebService {
     }
     
     func uploadImage(image : UIImage, id: Int, completion: ((Bool?) -> Void)?) {
-        let url = "https://reportappuruapan.azurewebsites.net/api/pictures/post/\(id)"
+        let url = "http://quipsquit-001-site1.itempurl.com/api/pictures/post/\(id)"
         print(url)
         let imgData = UIImageJPEGRepresentation(image, 0.2)!
         
@@ -290,7 +290,7 @@ class WebService {
     }
     
     func sendPost(data: Data, token: String, completion:((Error?, Bool?, Data?) -> Void)?) {
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/report/post/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/report/post/") else {
             fatalError("Couldn't parse server address")
         }
         print(token)
@@ -323,7 +323,7 @@ class WebService {
     }
     
     func sendComments(data: Data, token: String, completion:((Error?, Bool?, Data?) -> Void)?) {
-        guard let url = URL(string: "https://reportappuruapan.azurewebsites.net/api/feedback/comments/") else {
+        guard let url = URL(string: "http://quipsquit-001-site1.itempurl.com/api/feedback/comments/") else {
             fatalError("Couldn't parse server address")
         }
         print(token)

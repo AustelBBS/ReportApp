@@ -7,6 +7,7 @@ target 'ReportApp' do
   use_frameworks!
 
   # Pods for ReportApp
+  pod 'Instructions', '~>1.2.0'
   pod 'Alamofire', '~> 4.7'
   pod 'ReachabilitySwift'
   target 'ReportAppTests' do
@@ -18,5 +19,4 @@ target 'ReportApp' do
     inherit! :search_paths
     # Pods for testing
   end
-
 end
