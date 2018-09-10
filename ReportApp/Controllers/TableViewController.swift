@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
 class TableViewController: UITableViewController {
     var mReports : [ReportInfo]?
     let service = WebService()
     var report : ReportInfo?
+    var localReports = [ReportModel]()
+    var hasLocalReports = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let fetchRequest : NSFetchRequest<ReportModel> = ReportModel.fetchRequest()
+        
+        do {
+            localReports = try PersistenceService.context.fetch(fetchRequest)
+        } catch {
+            print(error)
+        }
+        
+        hasLocalReports = (localReports.count > 0) ? true : false
+        
         let token = UserDefaults.standard.string(forKey: "UserToken")
         var data : Data?
         var flag : Bool = false
@@ -33,8 +47,6 @@ class TableViewController: UITableViewController {
         
         repeat {
         } while !flag
-        
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
     }
@@ -57,22 +69,33 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? Cell
-
-        let report = mReports![indexPath.row]
-        if let id = report.ReportId {
-         cell?.mImage?.downloadFromUrl(id:id)
-        } else {
-            print(report.ReportId!)
-            cell?.mImage?.image = UIImage(named: "light")
-        }
         
-        cell?.mImage?.layer.cornerRadius = 8.0
-        cell?.mImage?.clipsToBounds = true
-        cell?.mStatusLabel?.text = report.Description
-        if let d =  CustomDateFormatter.dateTimeFrom(isoDate: report.DateTime!){
-            cell?.mDateLabel?.text = d
+        if hasLocalReports {
+            let report = localReports[indexPath.row]
+            cell?.mImage?.image = UIImage(data: report.reportImage!)
+            cell?.mImage?.layer.cornerRadius = 8.0
+            cell?.mImage?.clipsToBounds = true
+            cell?.mStatusLabel.text = report.descripcion
+            cell?.mDateLabel.text = ""
+            return cell!
+        } else {
+            let report = mReports![indexPath.row]
+            if let id = report.ReportId {
+                cell?.mImage?.downloadFromUrl(id:id)
+            } else {
+                print(report.ReportId!)
+                cell?.mImage?.image = UIImage(named: "light")
+            }
+            
+            cell?.mImage?.layer.cornerRadius = 8.0
+            cell?.mImage?.clipsToBounds = true
+            cell?.mStatusLabel?.text = report.Description
+            if let d =  CustomDateFormatter.dateTimeFrom(isoDate: report.DateTime!){
+                cell?.mDateLabel?.text = d
+            }
+            return cell!
         }
-        return cell!
+       
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

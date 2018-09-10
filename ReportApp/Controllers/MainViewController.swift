@@ -173,6 +173,13 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
     
     @IBAction func sendReport(_ sender: UIButton) {
         let params = Report(description: descriptionInput.text, latitude: mLatitud, longitude: mLongitud, type: mReportType)
+        let cdReport = ReportModel(context: PersistenceService.context)
+        cdReport.descripcion = descriptionInput.text
+        cdReport.latitude = mLatitud!
+        cdReport.longitude = mLongitud!
+        cdReport.type = mReportType
+        cdReport.reportImage = UIImagePNGRepresentation(reportImageType.image!)
+        PersistenceService.saveContext()
         let jsonEncoder = JSONEncoder()
         let jsonDecoder = JSONDecoder()
         do {

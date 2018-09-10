@@ -204,7 +204,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-Ks-KvQ" userLabel="Bottom Container">
-                                <rect key="frame" x="37" y="287" width="240" height="217"/>
+                                <rect key="frame" x="40" y="287" width="240" height="217"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8tL-vB-L2Z">
                                         <rect key="frame" x="-10" y="0.0" width="260" height="128"/>
@@ -235,14 +235,12 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="47W-b4-vHZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1LK-Pb-9JG"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ufL-Ks-KvQ" secondAttribute="trailing" constant="43" id="2Ua-D5-oIR"/>
-                            <constraint firstAttribute="bottom" secondItem="ufL-Ks-KvQ" secondAttribute="bottom" constant="64" id="8MI-8l-4Fg"/>
-                            <constraint firstItem="ufL-Ks-KvQ" firstAttribute="leading" secondItem="47W-b4-vHZ" secondAttribute="trailing" constant="37" id="FAd-Vw-dZ9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fzl-QS-59Z" secondAttribute="trailing" constant="36" id="IlI-N8-DSo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PH6-pA-8fw" secondAttribute="trailing" constant="30" id="Lcu-hu-CWO"/>
                             <constraint firstItem="PH6-pA-8fw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="RX2-Rw-quO"/>
                             <constraint firstItem="fzl-QS-59Z" firstAttribute="leading" secondItem="47W-b4-vHZ" secondAttribute="trailing" constant="30" id="TKQ-tv-c8L"/>
-                            <constraint firstItem="Xjq-uf-NOf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VMo-qW-P5F"/>
+                            <constraint firstAttribute="bottom" secondItem="xTR-UP-SmG" secondAttribute="bottom" id="U4w-fy-dwd"/>
+                            <constraint firstItem="Xjq-uf-NOf" firstAttribute="centerX" secondItem="xTR-UP-SmG" secondAttribute="centerX" id="fyN-zX-fhD"/>
                             <constraint firstItem="fzl-QS-59Z" firstAttribute="top" secondItem="PH6-pA-8fw" secondAttribute="bottom" constant="10" id="kcQ-yl-fUE"/>
                             <constraint firstItem="xTR-UP-SmG" firstAttribute="top" secondItem="ufL-Ks-KvQ" secondAttribute="bottom" constant="15" id="lOC-Aw-arw"/>
                             <constraint firstItem="xTR-UP-SmG" firstAttribute="leading" secondItem="47W-b4-vHZ" secondAttribute="trailing" id="lRo-s3-Ivf"/>
@@ -252,6 +250,8 @@
                             <constraint firstItem="Xjq-uf-NOf" firstAttribute="top" secondItem="PH6-pA-8fw" secondAttribute="bottom" constant="200" id="uQj-ax-aph"/>
                             <constraint firstItem="xTR-UP-SmG" firstAttribute="centerX" secondItem="PH6-pA-8fw" secondAttribute="centerX" id="w13-0g-OdP"/>
                             <constraint firstItem="PH6-pA-8fw" firstAttribute="leading" secondItem="47W-b4-vHZ" secondAttribute="trailing" constant="30" id="x0h-7v-CSV"/>
+                            <constraint firstItem="xTR-UP-SmG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xh3-4d-OOk"/>
+                            <constraint firstItem="ufL-Ks-KvQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="z5l-ZW-r71"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -1181,6 +1181,6 @@
         <image name="settings-gears" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5kI-gb-YGM"/>
+        <segue reference="W6I-g7-vbW"/>
     </inferredMetricsTieBreakers>
 </document>
