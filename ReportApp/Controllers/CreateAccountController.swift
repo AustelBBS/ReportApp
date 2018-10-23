@@ -21,6 +21,8 @@ class CreateAccountController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnTouch()
+        registrarBtn.layer.cornerRadius = 20.0
+        cancelarBtn.layer.cornerRadius = 20.0
         usuario.placeholder = "Nombre de usuario"
         correo.placeholder = "Correo"
         contrasena.placeholder = "Contraseña"
@@ -70,8 +72,8 @@ class CreateAccountController: UIViewController {
         
     }
     
-    func displayAlert(title: String, message: String, style: UIAlertActionStyle, actionTitle : String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    func displayAlert(title: String, message: String, style: UIAlertAction.Style, actionTitle : String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: actionTitle, style: style, handler: { (action) in
             switch action.style {
             case .default:

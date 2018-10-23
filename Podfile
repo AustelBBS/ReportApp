@@ -6,7 +6,8 @@ target 'ReportApp' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for ReportApp
+  # Pods for ReportApp	
+  pod 'SideMenu'
   pod 'Instructions', '~>1.2.0'
   pod 'Alamofire', '~> 4.7'
   pod 'ReachabilitySwift'

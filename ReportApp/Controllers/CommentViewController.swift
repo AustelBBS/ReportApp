@@ -43,7 +43,7 @@ class CommentViewController: UIViewController {
     }
     
     func displayAlert(msg: String) {
-        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.present(alert, animated: true, completion: nil)
     }

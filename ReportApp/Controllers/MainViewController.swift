@@ -178,7 +178,7 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
         cdReport.latitude = mLatitud!
         cdReport.longitude = mLongitud!
         cdReport.type = mReportType
-        cdReport.reportImage = UIImagePNGRepresentation(reportImageType.image!)
+        cdReport.reportImage = reportImageType.image!.pngData()
         PersistenceService.saveContext()
         let jsonEncoder = JSONEncoder()
         let jsonDecoder = JSONDecoder()
@@ -244,7 +244,7 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
     }
     
     func displayAlert(msg: String, title: String) {
-        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.locationInput.text = ""
         self.descriptionInput.text = ""

@@ -84,9 +84,9 @@ public class Navigator {
                 setLastVC()
                 return stack
                 
-            case let container? where container.childViewControllers.count > 0:
+            case let container? where container.children.count > 0:
                 setLastVC()
-                for vc in container.childViewControllers {
+                for vc in container.children {
                     NLog(indent + "-> in \(String(describing: type(of: vc))) childs:")
                     let subStack = checkIn(vc, stack: [ViewHierarchyObject(container: container, vc: nil)], indent: indent + "    ")
                     if subStack.last?.vc is T {

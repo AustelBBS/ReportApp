@@ -262,7 +262,7 @@ class WebService {
     func uploadImage(image : UIImage, id: Int, completion: ((Bool?) -> Void)?) {
         let url = "http://quipsquit-001-site1.itempurl.com/api/pictures/post/\(id)"
         print(url)
-        let imgData = UIImageJPEGRepresentation(image, 0.2)!
+        let imgData = image.jpegData(compressionQuality: 0.2)!
         
         //let parameters = ["name": rname] //Optional for extra parameter
         

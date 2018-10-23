@@ -36,8 +36,8 @@
 		D4B169875027C9C35EBDCBEE /* Pods_ReportAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73CCDE48AEA240B78142F038 /* Pods_ReportAppUITests.framework */; };
 		E22D5F902146A20D00545099 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22D5F8F2146A20D00545099 /* PersistenceService.swift */; };
 		E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23777DC2110340F0057EE29 /* PopupViewController.swift */; };
-		E2C0F883213E4A4E004454ED /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C0F882213E4A4E004454ED /* CoreDataHandler.swift */; };
 		E2C0F887213EBBEA004454ED /* Report.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2C0F885213EBBEA004454ED /* Report.xcdatamodeld */; };
+		E2F240CB216E477800F35FFE /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F240CA216E477800F35FFE /* CoreDataHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,8 +99,8 @@
 		DB1E7101D28D372D6328538C /* Pods-ReportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReportApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReportApp/Pods-ReportApp.release.xcconfig"; sourceTree = "<group>"; };
 		E22D5F8F2146A20D00545099 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		E23777DC2110340F0057EE29 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
-		E2C0F882213E4A4E004454ED /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		E2C0F886213EBBEA004454ED /* Report.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Report.xcdatamodel; sourceTree = "<group>"; };
+		E2F240CA216E477800F35FFE /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				16F26EA62099765B0074E13B /* WebService.swift */,
-				E2C0F882213E4A4E004454ED /* CoreDataHandler.swift */,
+				E2F240CA216E477800F35FFE /* CoreDataHandler.swift */,
 				E22D5F8F2146A20D00545099 /* PersistenceService.swift */,
 			);
 			path = Service;
@@ -340,15 +340,18 @@
 				TargetAttributes = {
 					16BDA4EA2058E30600C9B015 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					16BDA4FE2058E30700C9B015 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 16BDA4EA2058E30600C9B015;
 					};
 					16BDA5092058E30700C9B015 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 16BDA4EA2058E30600C9B015;
 					};
@@ -487,7 +490,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */,
-				E2C0F883213E4A4E004454ED /* CoreDataHandler.swift in Sources */,
 				1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */,
 				E22D5F902146A20D00545099 /* PersistenceService.swift in Sources */,
 				E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */,
@@ -500,6 +502,7 @@
 				16DB107F20DD5C210003C8F5 /* SettingsViewController.swift in Sources */,
 				48483D63212D1BE400D74ABD /* MessageCell.swift in Sources */,
 				168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */,
+				E2F240CB216E477800F35FFE /* CoreDataHandler.swift in Sources */,
 				48EE2FBE212687D100172054 /* CustomDateFormatter.swift in Sources */,
 				1696B6BE20EBCEB90024FFF7 /* MessageViewController.swift in Sources */,
 				167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */,
@@ -682,9 +685,9 @@
 				DEVELOPMENT_TEAM = 446N8VS944;
 				INFOPLIST_FILE = ReportApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.losponis.ReportApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devapp.reportapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -698,9 +701,9 @@
 				DEVELOPMENT_TEAM = 446N8VS944;
 				INFOPLIST_FILE = ReportApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.losponis.ReportApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devapp.reportapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -712,11 +715,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 446N8VS944;
 				INFOPLIST_FILE = ReportAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.losponis.ReportAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReportApp.app/ReportApp";
 			};
@@ -729,11 +733,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 446N8VS944;
 				INFOPLIST_FILE = ReportAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.losponis.ReportAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReportApp.app/ReportApp";
 			};
@@ -745,11 +750,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 446N8VS944;
 				INFOPLIST_FILE = ReportAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.losponis.ReportAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ReportApp;
 			};
@@ -761,11 +767,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 446N8VS944;
 				INFOPLIST_FILE = ReportAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.losponis.ReportAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = ReportApp;
 			};

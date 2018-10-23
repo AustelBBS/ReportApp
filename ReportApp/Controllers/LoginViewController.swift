@@ -28,7 +28,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.createAccount))
         linkLnl.isUserInteractionEnabled = true
         linkLnl.addGestureRecognizer(tap)
-        loginBtn.layer.cornerRadius = 8.0
+        loginBtn.layer.cornerRadius = 20.5;
         
     }
     
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayAlert(msg: String) {
-        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.userTF.text = ""
         self.passTF.text = ""
@@ -57,14 +57,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func addKeyboardEvents() {
         print("Add delegates")
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func removeKeyboardEvents() {
         print("Remove keyboard")
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -116,7 +116,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
                 if let field = activeField {
                     let newInputYPos = (field.frame.origin.y)+keyboardSize.height
@@ -132,7 +132,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y < 0{
                 self.view.frame.origin.y += keyboardSize.height
                 if self.view.frame.origin.y != 0 {

@@ -111,7 +111,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
             let m = DownloadMsg(UserName: userName, Body: t, DateTime: Date().description, ReportId: (report?.ReportId!)!)
             messages.append(m)
             mtableView.beginUpdates()
-            mtableView.insertRows(at:[IndexPath(row: messages.count == 0 ? 0 : messages.count - 1, section: 0)], with: UITableViewRowAnimation.fade)
+            mtableView.insertRows(at:[IndexPath(row: messages.count == 0 ? 0 : messages.count - 1, section: 0)], with: UITableView.RowAnimation.fade)
             mtableView.endUpdates()
             mtableView.scrollToRow(at: IndexPath(row: messages.count == 0 ? 0 : messages.count - 1, section: 0),at: .bottom , animated: true)
         }
@@ -143,7 +143,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func displayAlert(msg: String) {
-        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Ok", message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.present(alert, animated: true, completion: nil)
     }
