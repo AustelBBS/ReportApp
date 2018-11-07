@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class CameraManager: NSObject{
+class CameraManager: NSObject, UIPopoverPresentationControllerDelegate{
     static let shared = CameraManager()
     
     fileprivate var currentVC: UIViewController!
@@ -24,6 +24,7 @@ class CameraManager: NSObject{
             myPickerController.delegate = self;
             myPickerController.sourceType = .camera
             currentVC.present(myPickerController, animated: true, completion: nil)
+            //myPickerController.popoverPresentationController?.delegate = self
         }
         
     }

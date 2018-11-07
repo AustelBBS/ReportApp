@@ -8,9 +8,8 @@ target 'ReportApp' do
 
   # Pods for ReportApp	
   pod 'SideMenu'
-  pod 'Instructions', '~>1.2.0'
   pod 'Alamofire', '~> 4.7'
-  pod 'ReachabilitySwift'
+  pod 'Reachability'
   target 'ReportAppTests' do
     inherit! :search_paths
     # Pods for testing

@@ -1,28 +1,24 @@
 PODS:
   - Alamofire (4.7.3)
-  - Instructions (1.2.0)
-  - ReachabilitySwift (4.1.0)
+  - Reachability (3.2)
   - SideMenu (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
-  - Instructions (~> 1.2.0)
-  - ReachabilitySwift
+  - Reachability
   - SideMenu
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - Instructions
-    - ReachabilitySwift
+    - Reachability
     - SideMenu
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  Instructions: 763c2452bd78e05d8f969a21c1cbc3c07deef33a
-  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
 
-PODFILE CHECKSUM: f0354fa499174b7e2e57ac50a235ea38a28e8652
+PODFILE CHECKSUM: 9c1b8934843ab622687807a1366b424c85efebba
 
 COCOAPODS: 1.5.3

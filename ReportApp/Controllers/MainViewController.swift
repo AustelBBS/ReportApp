@@ -8,14 +8,9 @@
 
 import UIKit
 import CoreLocation
-import Instructions
-class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+class MainViewController: UIViewController, UITabBarDelegate {
     //hola
-    @IBOutlet weak var mImageLogo: UIImageView!
-    @IBOutlet weak var leftConstraint: NSLayoutConstraint!
-    @IBOutlet weak var mConfig   : UIButton!
-    @IBOutlet weak var mComments : UIButton!
-    @IBOutlet weak var mReports  : UIButton!
+    
     @IBOutlet weak var mSend : UIButton!
     @IBOutlet weak var topContainer: UIView!
     @IBOutlet weak var reportImageType: UIImageView!
@@ -24,14 +19,6 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
     @IBOutlet weak var gps: UIButton!
     @IBOutlet weak var descriptionInput: UITextView!
     @IBOutlet weak var send: UIButton!
-    @IBOutlet weak var mRightBtn: UITabBarItem!
-    @IBOutlet weak var mMiddleBtn: UITabBarItem!
-    @IBOutlet weak var mLeftBtn: UITabBarItem!
-    @IBOutlet weak var tabBar: UITabBar!
-    @IBOutlet weak var mExitBtn: UIButton!
-    @IBOutlet weak var directory: UIButton!
-    @IBOutlet weak var userLabel: UILabel!
-    @IBOutlet weak var motd: UILabel!
     
     @IBOutlet weak var coachPlaceholder: UIView!
     /*
@@ -49,61 +36,50 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
     var isMenuHidden = true
     var gpsManager : Geolocalization?
     let service = WebService()
-    let coachMarksController = CoachMarksController()
-    var coachMarksArray = [CoachMarkStruct]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
-        self.coachMarksController.dataSource = self
-        self.coachMarksController.overlay.allowTap = true
-        self.coachMarksController.overlay.color = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 0.6776541096)
-        loadCoachMarkArray()
+        
         prepareController()
         showMOTD()
     }
     
-    func loadCoachMarkArray(){
-        coachMarksArray.append(CoachMarkStruct(message: "Con esta aplicación podrás enviar reportes sobre fallas en el alumbrado público, baches en las calles o basura a las autoridades municipales.", view: coachPlaceholder))
-        coachMarksArray.append(CoachMarkStruct(message: "Puedes agregar una foto a tu reporte.", view: topContainer))
-        coachMarksArray.append(CoachMarkStruct(message: "Si te es posible, trata de que se vean referencias en la foto.", view: topContainer))
-        coachMarksArray.append(CoachMarkStruct(message: "Con el GPS se envía la ubicación exacta de tu reporte.", view: gps))
-        coachMarksArray.append(CoachMarkStruct(message: "También puedes incluir una descripción, comentarios o referencias.", view: descriptionInput))
-        coachMarksArray.append(CoachMarkStruct(message: "No olvides indicar qué tipo de reporte es:", view: tabBar))
-        coachMarksArray.append(CoachMarkStruct(message: "Presiona aquí para enviar tu reporte.", view: send))
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.viewWillDisappear(animated)
-        self.coachMarksController.stop(immediately: true)
+//        self.coachMarksController.stop(immediately: true)
     }
     
-    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return coachMarksArray.count
-    }
-    
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        if let view = coachMarksArray[index].view{
-            return coachMarksController.helper.makeCoachMark(for: view)
-        }else{
-            let c = coachMarksController.helper.makeCoachMark(for: self.view, pointOfInterest:   CGPoint(x: 200, y:700), cutoutPathMaker: nil)
-             //CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
-            return c
-        }
-    }
-    
-    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-        var coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: index != 0, withNextText: false, arrowOrientation:
-            coachMark.arrowOrientation)
-
-        coachViews.bodyView.hintLabel.text = coachMarksArray[index].message
-        coachViews.bodyView.nextLabel.text = nil
-        
-        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
-        
-    }
-    
+//    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+//        return coachMarksArray.count
+//    }
+//
+//    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+//        if let view = coachMarksArray[index].view{
+//            return coachMarksController.helper.makeCoachMark(for: view)
+//        }else{
+//            let c = coachMarksController.helper.makeCoachMark(for: self.view, pointOfInterest:   CGPoint(x: 200, y:700), cutoutPathMaker: nil)
+//             //CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
+//            return c
+//        }
+//    }
+//
+//    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+//        var coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: index != 0, withNextText: false, arrowOrientation:
+//            coachMark.arrowOrientation)
+//
+//        coachViews.bodyView.hintLabel.text = coachMarksArray[index].message
+//        coachViews.bodyView.nextLabel.text = nil
+//
+//        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+//
+//    }
+//
     func prepareController() {
         mReportType = "lighting"
         self.hideKeyboardOnTouch()
@@ -112,18 +88,17 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
         if let localLocation = gpsManager?.requestCoords(){
             setLocation(localLocation: localLocation)
         }
-        tabBar.delegate = self
-        mImageLogo.layer.cornerRadius = 8.0
-        mImageLogo.clipsToBounds = true
-        mConfig.layer.cornerRadius = 8.0
-        mComments.layer.cornerRadius = 8.0
-        mReports.layer.cornerRadius = 8.0
+//        mImageLogo.layer.cornerRadius = 8.0
+//        mImageLogo.clipsToBounds = true
+//        mConfig.layer.cornerRadius = 8.0
+//        mComments.layer.cornerRadius = 8.0
+//        mReports.layer.cornerRadius = 8.0
         mSend.layer.cornerRadius = 8.0
-        mExitBtn.layer.cornerRadius = 8.0
+//        mExitBtn.layer.cornerRadius = 8.0
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
         descriptionInput.placeholder = "¿Que más nos quieres decir?"
-        directory.layer.cornerRadius = 8.0
+//        directory.layer.cornerRadius = 8.0
     }
     
     func showMOTD() {
@@ -134,8 +109,8 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
             do {
                 let response = try decoder.decode(MOTD.self, from: data!)
                 DispatchQueue.main.async {
-                    self.userLabel.text = UserDefaults.standard.string(forKey: "user")
-                    self.motd.text = response.Message
+//                    self.userLabel.text = UserDefaults.standard.string(forKey: "user")
+//                    self.motd.text = response.Message
                     self.displayAlert(msg: response.Message!, title: "Mensaje del día")
                 }
             } catch {
@@ -150,18 +125,18 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
     }
     
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
-        if isMenuHidden {
-            leftConstraint.constant = 0
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            })
-        } else {
-            leftConstraint.constant = -200
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
-        isMenuHidden = !isMenuHidden
+//        if isMenuHidden {
+//            leftConstraint.constant = 0
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        } else {
+//            leftConstraint.constant = -200
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.view.layoutIfNeeded()
+//            })
+//        }
+//        isMenuHidden = !isMenuHidden
     }
     
     @IBAction func logout(_ sender: UIButton) {
@@ -213,22 +188,8 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
     func resetUI() {
         changeImage(name: "lamp")
         mReportType = "lighting"
-        descriptionInput.text = "¿Que más nos puedes decir?"
+        descriptionInput.placeholder = "¿Que más nos puedes decir?"
         locationInput.text = "Toca el gps para tener ubicación."
-    }
-    
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
-        if item == mLeftBtn {
-            changeImage(name: "lamp")
-            mReportType = "lighting"
-        } else if item == mMiddleBtn {
-            changeImage(name: "bache")
-            mReportType = "roads"
-        } else {
-            changeImage(name: "basura")
-            mReportType = "trash"
-        }
     }
     
     func changeImage (name: String) {
@@ -266,7 +227,7 @@ class MainViewController: UIViewController, UITabBarDelegate, CoachMarksControll
     }
     
     @IBAction func showHelp(_ sender: UIBarButtonItem) {
-        self.coachMarksController.start(on: self)
+//        self.coachMarksController.start(on: self)
     }
     
     
