@@ -28,7 +28,7 @@ class SideMenuVC: UIViewController {
         mConfig.layer.cornerRadius = 12.0
         mSendComments.layer.cornerRadius = 12.0
         mLogout.layer.cornerRadius = 12.0
-        mUser.text = UserDefaults.standard.value(forKey: "User") as? String
+        mUser.text = UserDefaults.standard.value(forKey: "user") as? String
         mMOTD.text = UserDefaults.standard.value(forKey: "MOTD") as? String
     }
     

@@ -41,7 +41,6 @@ class MainViewController: UIViewController, UITabBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
-        
         prepareController()
         showMOTD()
     }
@@ -88,17 +87,10 @@ class MainViewController: UIViewController, UITabBarDelegate {
         if let localLocation = gpsManager?.requestCoords(){
             setLocation(localLocation: localLocation)
         }
-//        mImageLogo.layer.cornerRadius = 8.0
-//        mImageLogo.clipsToBounds = true
-//        mConfig.layer.cornerRadius = 8.0
-//        mComments.layer.cornerRadius = 8.0
-//        mReports.layer.cornerRadius = 8.0
         mSend.layer.cornerRadius = 8.0
-//        mExitBtn.layer.cornerRadius = 8.0
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
         descriptionInput.placeholder = "¿Que más nos quieres decir?"
-//        directory.layer.cornerRadius = 8.0
     }
     
     func showMOTD() {
@@ -111,6 +103,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
                 DispatchQueue.main.async {
 //                    self.userLabel.text = UserDefaults.standard.string(forKey: "user")
 //                    self.motd.text = response.Message
+                    UserDefaults.standard.setValue(response.Message, forKey: "MOTD")
                     self.displayAlert(msg: response.Message!, title: "Mensaje del día")
                 }
             } catch {
