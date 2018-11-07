@@ -11,10 +11,12 @@ import UIKit
 class CommentViewController: UIViewController {
 
     @IBOutlet weak var mComment : UITextField?
+    @IBOutlet weak var mSend: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardOnTouch()
+        mSend.layer.cornerRadius = 12.0
     }
 
     @IBAction func sendComment(_ sender: UIButton) {

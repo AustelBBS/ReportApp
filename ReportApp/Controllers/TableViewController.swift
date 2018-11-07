@@ -31,24 +31,25 @@ class TableViewController: UITableViewController {
         
         let token = UserDefaults.standard.string(forKey: "UserToken")
         var data : Data?
-        var flag : Bool = false
         service.loadReports(token: token!, method: "GET") {
                 responseData in
+            if responseData != nil {
                 data = responseData
                 do {
                     let decoder = JSONDecoder()
                     let reportsArray = try decoder.decode(JSONArray.self, from: data!)
+                    print(reportsArray.count)
                     self.mReports = reportsArray
-                    flag = true
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 } catch {
                     print(error.localizedDescription)
                 }
+            } else {
+                self.mReports = NSMutableArray.init() as? [ReportInfo]
+            }
         }
-        
-        repeat {
-        } while !flag
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +64,11 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (mReports?.count)!
+        if let hasReports = mReports?.count {
+            return hasReports
+        } else {
+            return 0
+        }
     }
 
     
@@ -109,9 +114,6 @@ class TableViewController: UITableViewController {
         }
     }
 
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? MessageViewController {
             destination.report = report

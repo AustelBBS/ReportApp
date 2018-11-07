@@ -139,13 +139,6 @@ class MainViewController: UIViewController, UITabBarDelegate {
 //        isMenuHidden = !isMenuHidden
     }
     
-    @IBAction func logout(_ sender: UIButton) {
-        UserDefaults.standard.set(false, forKey: "loggedIn")
-        UserDefaults.standard.synchronize()
-        print("logging off")
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     @IBAction func sendReport(_ sender: UIButton) {
         let params = Report(description: descriptionInput.text, latitude: mLatitud, longitude: mLongitud, type: mReportType)
         let cdReport = ReportModel(context: PersistenceService.context)

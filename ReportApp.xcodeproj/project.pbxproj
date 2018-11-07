@@ -37,6 +37,7 @@
 		E22D5F902146A20D00545099 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22D5F8F2146A20D00545099 /* PersistenceService.swift */; };
 		E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23777DC2110340F0057EE29 /* PopupViewController.swift */; };
 		E2C0F887213EBBEA004454ED /* Report.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2C0F885213EBBEA004454ED /* Report.xcdatamodeld */; };
+		E2E1248B219320A7007E19FB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1248A219320A7007E19FB /* SideMenuVC.swift */; };
 		E2F240CB216E477800F35FFE /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F240CA216E477800F35FFE /* CoreDataHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		E22D5F8F2146A20D00545099 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		E23777DC2110340F0057EE29 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		E2C0F886213EBBEA004454ED /* Report.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Report.xcdatamodel; sourceTree = "<group>"; };
+		E2E1248A219320A7007E19FB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		E2F240CA216E477800F35FFE /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */,
 				16DB107E20DD5C210003C8F5 /* SettingsViewController.swift */,
 				E23777DC2110340F0057EE29 /* PopupViewController.swift */,
+				E2E1248A219320A7007E19FB /* SideMenuVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				16BDA4F12058E30700C9B015 /* MainViewController.swift in Sources */,
 				1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */,
 				E22D5F902146A20D00545099 /* PersistenceService.swift in Sources */,
+				E2E1248B219320A7007E19FB /* SideMenuVC.swift in Sources */,
 				E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */,
 				16CD1DEE20A1F15900509764 /* Structs.swift in Sources */,
 				167DD24620C6CF10001A96E4 /* Navigator.swift in Sources */,
