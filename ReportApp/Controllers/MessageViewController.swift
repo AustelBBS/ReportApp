@@ -34,6 +34,8 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         //messages?.append(DownloadMsg(UserName: userName, Body: "fire and blood", DateTime: "lol", ReportId: 1))
         userName = UserDefaults.standard.string(forKey: "user")!
         self.hideKeyboardOnTouch()
+        mChatLog.delegate = self
+        mChatLog.dataSource = self
         //downloadPreviousMessages()
         if let title = CustomDateFormatter.dateTimeFrom(isoDate: report!.DateTime!){
             self.title = title
@@ -88,8 +90,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         if(message.UserName != userName){
             messageCell?.mBubbleView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             messageCell?.mMessageLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            
-
             messageCell?.mMessageLabel.textAlignment = .left
             messageCell?.mLeadingSpaceConstraint.constant = 5
         }else{

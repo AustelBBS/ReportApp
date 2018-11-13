@@ -753,7 +753,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hwg-Pb-Itb">
-                                            <rect key="frame" x="104" y="29" width="294" height="60"/>
+                                            <rect key="frame" x="104" y="29" width="294" height="61"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="294" id="qgO-zG-9nB"/>
                                                 <constraint firstAttribute="height" constant="61" id="xmr-vz-d3j"/>
@@ -796,7 +796,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rX3-ww-NIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3401" y="15"/>
+            <point key="canvasLocation" x="3449" y="15"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="K1x-i9-JGm">
@@ -834,7 +834,7 @@
                                     <constraint firstAttribute="height" constant="41" id="LPv-50-yfA"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="151" id="iau-zf-8yu"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Iniciar Sesión">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -1575,7 +1575,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CDU-Zo-cZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="15"/>
+            <point key="canvasLocation" x="4159" y="15"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qPf-8t-MAk">
@@ -1642,26 +1642,26 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bache" width="130" height="148"/>
-        <image name="barrier" width="12.800000190734863" height="12.800000190734863"/>
-        <image name="basura" width="130" height="130"/>
-        <image name="cloud-computing" width="37.5" height="37.5"/>
-        <image name="garbage" width="12.800000190734863" height="12.800000190734863"/>
-        <image name="icon" width="37.5" height="37.5"/>
+        <image name="bache" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="barrier" width="36.799999237060547" height="36.799999237060547"/>
+        <image name="basura" width="409.60000610351562" height="409.60000610351562"/>
+        <image name="cloud-computing" width="38.400001525878906" height="38.400001525878906"/>
+        <image name="garbage" width="36.799999237060547" height="36.799999237060547"/>
+        <image name="icon" width="38.400001525878906" height="38.400001525878906"/>
         <image name="icono reportap" width="500" height="500"/>
         <image name="icons8-sent-50" width="37.5" height="37.5"/>
-        <image name="idea" width="37.5" height="37.5"/>
+        <image name="idea" width="36.799999237060547" height="36.799999237060547"/>
         <image name="info" width="40" height="40"/>
-        <image name="lamp" width="157" height="150"/>
+        <image name="lamp" width="512" height="512"/>
         <image name="logopro" width="500" height="500"/>
-        <image name="logout" width="37.5" height="37.5"/>
+        <image name="logout" width="38.400001525878906" height="38.400001525878906"/>
         <image name="map-location" width="37.5" height="37.5"/>
-        <image name="menu" width="37.5" height="37.5"/>
-        <image name="phone@x1" width="37.5" height="37.5"/>
-        <image name="photo-camera" width="37.5" height="37.5"/>
-        <image name="settings-gears" width="37.5" height="37.5"/>
+        <image name="menu" width="38.400001525878906" height="38.400001525878906"/>
+        <image name="phone@x1" width="38.400001525878906" height="38.400001525878906"/>
+        <image name="photo-camera" width="38.400001525878906" height="38.400001525878906"/>
+        <image name="settings-gears" width="38.400001525878906" height="38.400001525878906"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g2X-hS-yk4"/>
+        <segue reference="hoS-yp-Ui3"/>
     </inferredMetricsTieBreakers>
 </document>

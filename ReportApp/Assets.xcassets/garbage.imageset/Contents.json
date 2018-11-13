@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "garbage.png",
+      "filename" : "trash-can.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Webp.net-resizeimage (14).png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Webp.net-resizeimage (13).png",
       "scale" : "3x"
     }
   ],

@@ -79,13 +79,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let service = WebService()
         let encoder = JSONEncoder()
         let credentials = Login(username: userTF.text, pass: passTF.text)
-        var token : String?
         
         do {
             let data = try encoder.encode(credentials)
             service.login(data: data, method: "POST") { (loginToken) in
                 UserDefaults.standard.set(loginToken, forKey: "UserToken")
-                token = UserDefaults.standard.string(forKey: "UserToken")
                 service.testLogin(token: loginToken!, method: "GET") { (response) in
                     if response! {
                         DispatchQueue.main.async {

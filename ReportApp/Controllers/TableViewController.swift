@@ -47,6 +47,7 @@ class TableViewController: UITableViewController {
                     print(error.localizedDescription)
                 }
             } else {
+                print("No Response");
                 self.mReports = NSMutableArray.init() as? [ReportInfo]
             }
         }

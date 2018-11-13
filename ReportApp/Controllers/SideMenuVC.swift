@@ -33,13 +33,20 @@ class SideMenuVC: UIViewController {
     }
     
     @IBAction func logout() {
+        print("logout")
         UserDefaults.standard.set(false, forKey: "loggedIn")
         UserDefaults.standard.synchronize()
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func reports() {
         performSegue(withIdentifier: "toReports", sender: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mUser.text = UserDefaults.standard.value(forKey: "user") as? String
+        mMOTD.text = UserDefaults.standard.value(forKey: "MOTD") as? String
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

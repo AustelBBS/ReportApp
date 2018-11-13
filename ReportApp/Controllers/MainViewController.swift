@@ -48,6 +48,11 @@ class MainViewController: UIViewController, UITabBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        print("appeared")
+        let loggedOut = UserDefaults.standard.value(forKey: "loggedIn") as! Bool
+        if (loggedOut == false) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,8 +106,6 @@ class MainViewController: UIViewController, UITabBarDelegate {
             do {
                 let response = try decoder.decode(MOTD.self, from: data!)
                 DispatchQueue.main.async {
-//                    self.userLabel.text = UserDefaults.standard.string(forKey: "user")
-//                    self.motd.text = response.Message
                     UserDefaults.standard.setValue(response.Message, forKey: "MOTD")
                     self.displayAlert(msg: response.Message!, title: "Mensaje del día")
                 }
@@ -114,22 +117,6 @@ class MainViewController: UIViewController, UITabBarDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func showMenu(_ sender: UIBarButtonItem) {
-//        if isMenuHidden {
-//            leftConstraint.constant = 0
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.view.layoutIfNeeded()
-//            })
-//        } else {
-//            leftConstraint.constant = -200
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.view.layoutIfNeeded()
-//            })
-//        }
-//        isMenuHidden = !isMenuHidden
     }
     
     @IBAction func sendReport(_ sender: UIButton) {
