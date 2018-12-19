@@ -48,7 +48,6 @@ class MainViewController: UIViewController, UITabBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        print("appeared")
         let loggedOut = UserDefaults.standard.value(forKey: "loggedIn") as! Bool
         if (loggedOut == false) {
             self.dismiss(animated: true, completion: nil)

@@ -114,6 +114,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="setEditable" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bgA-pY-yIw">
                                 <rect key="frame" x="16" y="314" width="382" height="128"/>
@@ -711,6 +714,11 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="info" id="cn5-o3-5Ug">
                             <color key="tintColor" red="1" green="0.0" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="hcH-xs-zdq" kind="popoverPresentation" popoverAnchorBarButtonItem="cn5-o3-5Ug" id="0w1-jQ-sNy">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1274,6 +1282,11 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="info" id="xgw-Hi-20b">
                             <color key="tintColor" red="1" green="0.0" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="hcH-xs-zdq" kind="popoverPresentation" popoverAnchorBarButtonItem="xgw-Hi-20b" id="Kjy-YM-7ks">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1393,7 +1406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXg-ce-Jju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1576.8115942028987" y="14.732142857142856"/>
+            <point key="canvasLocation" x="2116" y="759"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="BbZ-ok-GbY">
@@ -1662,6 +1675,7 @@
         <image name="settings-gears" width="38.400001525878906" height="38.400001525878906"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="0w1-jQ-sNy"/>
         <segue reference="hoS-yp-Ui3"/>
     </inferredMetricsTieBreakers>
 </document>
