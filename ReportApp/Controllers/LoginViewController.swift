@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
+        KeyboardAvoiding.avoidingView = self.view
         self.hideKeyboardOnTouch()
         addKeyboardEvents()
         setDelegate()
@@ -79,23 +80,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let service = WebService()
         let encoder = JSONEncoder()
         let credentials = Login(username: userTF.text, pass: passTF.text)
-        
         do {
             let data = try encoder.encode(credentials)
             service.login(data: data, method: "POST") { (loginToken) in
-                UserDefaults.standard.set(loginToken, forKey: "UserToken")
-                service.testLogin(token: loginToken!, method: "GET") { (response) in
-                    if response! {
-                        DispatchQueue.main.async {
-                            UserDefaults.standard.set("\(self.userTF.text!)", forKey: "user")
-                            self.userTF.text = ""
-                            self.passTF.text = ""
-                            self.performSegue(withIdentifier: "toMainView", sender: self)
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.displayAlert(msg: "Usuario no registrado!")
-                        }
+                if (loginToken?.contains("error"))! || (loginToken?.contains("Error"))! {
+                    DispatchQueue.main.async {
+                        self.displayAlert(msg: loginToken!)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        UserDefaults.standard.set("\(self.userTF.text!)", forKey: "user")
+                        UserDefaults.standard.set(loginToken!, forKey: "cookie")
+                        self.userTF.text = ""
+                        self.passTF.text = ""
+                        self.performSegue(withIdentifier: "toMainView", sender: self)
                     }
                 }
             }

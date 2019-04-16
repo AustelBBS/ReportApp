@@ -9,15 +9,16 @@
 import Foundation
 import UIKit
 typealias JSONArray = [ReportInfo]
+typealias MessageArray = [DownloadMsg]
 
 struct ResponseID : Codable {
    var reportId : Int?
 }
 
 struct SignIn : Codable {
-    var username : String?
-    var email      : String?
-    var pass  : String?
+    var email      : String
+    var username : String
+    var pass  : String
 }
 
 struct Login : Codable {
@@ -55,7 +56,6 @@ struct SendMsg : Codable {
     var reportId : Int?
     var body : String?
 }
-
 
 struct DownloadMsg : Decodable {
     var UserName : String

@@ -68,14 +68,29 @@ class WebService {
             (data, response, error) in
             
             guard error == nil else {
+                completion?("Error conection timed out")
                 return
             }
-            
-            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-               print(utf8)
-               completion?(utf8)
-            } else {
-                print("No data in response")
+            if let httpResponse = response as? HTTPURLResponse {
+                var responseCookie = ""
+                for cookie in HTTPCookieStorage.shared.cookies! {
+                    print("Cookie \(cookie)")
+                    responseCookie = cookie.value
+                }
+                if httpResponse.statusCode == 200 {
+                    UserDefaults.standard.set(true, forKey: "loggedIn")
+                    completion?(responseCookie)
+                } else if httpResponse.statusCode == 302 {
+                    if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                        completion?(utf8)
+                    }
+                } else if httpResponse.statusCode == 404 {
+                    if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                        completion?(utf8)
+                    }
+                } else {
+                    completion?("Error \(httpResponse.statusCode) Please contact the system administrator")
+                }
             }
             
         }
@@ -98,7 +113,11 @@ class WebService {
         if !items.isEmpty {
             url?.queryItems = items
         }
-        
+        if let token = UserDefaults.standard.value(forKey: "cookie") {
+            let cookieHeaderField = ["Set-Cookie": token]
+            let cookies = HTTPCookie.cookies(withResponseHeaderFields: cookieHeaderField as! [String : String], for: (url?.url)!)
+            HTTPCookieStorage.shared.setCookies(cookies, for:(url?.url)!, mainDocumentURL: (url?.url)!)
+        }
         var request = URLRequest(url: (url?.url)!)
         request.httpMethod = "GET"
         
@@ -106,37 +125,45 @@ class WebService {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) {
             (data, response, error) in
-            
-            guard error == nil else {
-                completion?(error, false, nil)
-                return
-            }
-            
-            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                print("response \(utf8)")
-                if utf8.starts(with: "{\"Message\":\"Errors}") {
-                    completion?(nil, false, data)
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    guard error == nil else {
+                        completion?(error, false, nil)
+                        return
+                    }
+                    if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                        print("response \(utf8)")
+                        if utf8.starts(with: "{\"Message\":\"Errors}") {
+                            completion?(nil, false, data)
+                        }
+                        completion?(nil, true, data)
+                    } else {
+                        print("No data in response")
+                        completion?(nil, false, nil)
+                    }
+                } else {
+                    print("No data in response")
+                    print(httpResponse.statusCode)
+                    completion?(nil, false, nil)
                 }
-                completion?(nil, true, data)
-            } else {
-                print("No data in response")
-                completion?(nil, false, nil)
             }
-            
         }
         task.resume()
     }
     
     func sendMessage(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
-        guard let url = URL(string: "\(BASEURL)api/messages/post/") else {
+        guard let url = URL(string: "\(BASEURL)/api/messages/post/") else {
             fatalError("Couldn't parse server address")
         }
-        
+        if let token = UserDefaults.standard.value(forKey: "cookie") {
+            let cookieHeaderField = ["Set-Cookie": token]
+            let cookies = HTTPCookie.cookies(withResponseHeaderFields: cookieHeaderField as! [String : String], for: url)
+            HTTPCookieStorage.shared.setCookies(cookies, for:url, mainDocumentURL: url)
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
         request.httpBody = data
         
         let config = URLSessionConfiguration.default
@@ -168,7 +195,7 @@ class WebService {
     
     
     func register(data: Data, method: String, completion:((Error?, Bool?, String?) -> Void)?) {
-        guard let url = URL(string: "\(BASEURL)/api/user/post/") else {
+        guard let url = URL(string: "\(BASEURL)/api/user/post") else {
             fatalError("Couldn't parse server address")
         }
         
@@ -189,19 +216,26 @@ class WebService {
                 return
             }
             
-            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                print("response \(utf8)")
-                if utf8.starts(with: "{\"Message\":\"Errors}") {
-                    let message : String? = "error"
-                    completion?(nil, true, message)
+            if let httpResponse = response as? HTTPURLResponse {
+                if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                    print("response \(utf8)")
+                    if httpResponse.statusCode == 200 {
+                        completion?(nil, true, utf8)
+                    } else if httpResponse.statusCode == 400 {
+                        completion?(nil, false, utf8)
+                    } else if httpResponse.statusCode == 500 {
+                        let error500 = "Error 500: \(utf8)"
+                        completion?(nil, false, error500)
+                    }
+                } else {
+                    print("No data in response")
+                    completion?(nil, false, "Invalid request")
                 }
-                let message : String? = "success"
-                completion?(nil, true, message)
             } else {
                 print("No data in response")
                 completion?(nil, false, nil)
             }
-            
+        
         }
         task.resume()
     }
@@ -211,9 +245,12 @@ class WebService {
             fatalError("Couldn't parse server address")
         }
         
+        let cookieHeaderField = ["Set-Cookie": token]
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: cookieHeaderField, for: url)
+        HTTPCookieStorage.shared.setCookies(cookies, for:url, mainDocumentURL: url)
+        
         var request = URLRequest(url: url)
         request.httpMethod = method
-        request.setValue(token, forHTTPHeaderField: "access_token")
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -232,26 +269,33 @@ class WebService {
     }
     
     func loadReports(token: String, method: String, completion:((Data?) -> Void)?) {
-        guard let url = URL(string: "\(BASEURL)api/report/get/") else {
+        guard let url = URL(string: "\(BASEURL)/api/report/get/") else {
             fatalError("Couldn't parse server address")
         }
         
+        let cookieHeaderField = ["Set-Cookie": token]
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: cookieHeaderField, for: url)
+        HTTPCookieStorage.shared.setCookies(cookies, for:url, mainDocumentURL: url)
+        
         var request = URLRequest(url: url)
         request.httpMethod = method
-        request.setValue(token, forHTTPHeaderField: "access_token")
-        
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) {
             (data, response, error) in
-            
-            guard error == nil else {
-                return
-            }
-            
-            if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
-                print(utf8)
-                completion?(dato)
+            if let statusCode = response as? HTTPURLResponse {
+                guard error == nil else {
+                    return
+                }
+                if statusCode.statusCode == 200 {
+                    if let dato = data, let utf8 = String(data: dato, encoding: .utf8) {
+                        print(utf8)
+                        completion?(dato)
+                    }
+                } else {
+                    print(statusCode.statusCode)
+                    completion?(nil)
+                }
             }
         }
         task.resume()
@@ -292,14 +336,15 @@ class WebService {
         guard let url = URL(string: "\(BASEURL)/api/report/post/") else {
             fatalError("Couldn't parse server address")
         }
-        print(token)
+        //print(token)
+        let cookieHeaderField = ["Set-Cookie": token]
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: cookieHeaderField, for: url)
+        HTTPCookieStorage.shared.setCookies(cookies, for:url, mainDocumentURL: url)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(token, forHTTPHeaderField: "access_token")
         request.httpBody = data
-        
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) {
@@ -326,11 +371,13 @@ class WebService {
             fatalError("Couldn't parse server address")
         }
         print(token)
+        let cookieHeaderField = ["Set-Cookie": token]
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: cookieHeaderField, for: url)
+        HTTPCookieStorage.shared.setCookies(cookies, for:url, mainDocumentURL: url)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(token, forHTTPHeaderField: "access_token")
         request.httpBody = data
         
         let config = URLSessionConfiguration.default

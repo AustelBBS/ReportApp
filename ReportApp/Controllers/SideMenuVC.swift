@@ -36,7 +36,9 @@ class SideMenuVC: UIViewController {
         print("logout")
         UserDefaults.standard.set(false, forKey: "loggedIn")
         UserDefaults.standard.synchronize()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true) {
+         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "exit"), object: nil)
+        }
     }
     
     @IBAction func reports() {
@@ -50,9 +52,7 @@ class SideMenuVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toReports" {
-            let VC = segue.destination as! TableViewController
-        }
+        
     }
     
 

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1600A6A6205BAE30003733F2 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600A6A5205BAE2F003733F2 /* Cell.swift */; };
-		1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600A6A7205BAE4A003733F2 /* TableViewController.swift */; };
+		1600A6A8205BAE4A003733F2 /* ReportsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1600A6A7205BAE4A003733F2 /* ReportsTableVC.swift */; };
 		1672DC1420A9509300A6BEA6 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672DC1320A9509300A6BEA6 /* CameraManager.swift */; };
 		1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1676C2FC20A18B8100D1E90D /* Extensions.swift */; };
 		167DD24620C6CF10001A96E4 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167DD24520C6CF10001A96E4 /* Navigator.swift */; };
@@ -28,6 +28,9 @@
 		16DB107D20DD32630003C8F5 /* FakeSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */; };
 		16DB107F20DD5C210003C8F5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DB107E20DD5C210003C8F5 /* SettingsViewController.swift */; };
 		16F26EA72099765B0074E13B /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F26EA62099765B0074E13B /* WebService.swift */; };
+		173E7FF122665D26007E89A2 /* IHKeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E7FF022665D26007E89A2 /* IHKeyboardAvoiding.swift */; };
+		173E7FF322665D59007E89A2 /* IHKeyboardDismissingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E7FF222665D59007E89A2 /* IHKeyboardDismissingView.swift */; };
+		17A5455A2266364000371B9C /* HelpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A545592266364000371B9C /* HelpController.swift */; };
 		48483D63212D1BE400D74ABD /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48483D62212D1BE400D74ABD /* MessageCell.swift */; };
 		48483D65212E5C5500D74ABD /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48483D64212E5C5500D74ABD /* MessageCell.xib */; };
 		48EE2FBE212687D100172054 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE2FBD212687D100172054 /* CustomDateFormatter.swift */; };
@@ -63,7 +66,7 @@
 		0714F0CAB1A533238F7217E5 /* Pods_ReportAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReportAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C572CDC70E421C3221E9995 /* Pods_ReportAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReportAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1600A6A5205BAE2F003733F2 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
-		1600A6A7205BAE4A003733F2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		1600A6A7205BAE4A003733F2 /* ReportsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableVC.swift; sourceTree = "<group>"; };
 		1672DC1320A9509300A6BEA6 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		1676C2FC20A18B8100D1E90D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		167DD24520C6CF10001A96E4 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
@@ -89,6 +92,9 @@
 		16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSplashViewController.swift; sourceTree = "<group>"; };
 		16DB107E20DD5C210003C8F5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		16F26EA62099765B0074E13B /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		173E7FF022665D26007E89A2 /* IHKeyboardAvoiding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHKeyboardAvoiding.swift; sourceTree = "<group>"; };
+		173E7FF222665D59007E89A2 /* IHKeyboardDismissingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHKeyboardDismissingView.swift; sourceTree = "<group>"; };
+		17A545592266364000371B9C /* HelpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpController.swift; sourceTree = "<group>"; };
 		2BCDDF33324A009FD082DCB6 /* Pods-ReportAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReportAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReportAppUITests/Pods-ReportAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D99A6C175BD3B23116C18D5 /* Pods-ReportAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReportAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReportAppTests/Pods-ReportAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		48483D62212D1BE400D74ABD /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -139,13 +145,14 @@
 				16BDA4F02058E30700C9B015 /* MainViewController.swift */,
 				168A262F2085B3BA004582A6 /* LoginViewController.swift */,
 				168A26312085BDB2004582A6 /* CreateAccountController.swift */,
-				1600A6A7205BAE4A003733F2 /* TableViewController.swift */,
+				1600A6A7205BAE4A003733F2 /* ReportsTableVC.swift */,
 				167DEA2C20C503C5005F7591 /* CommentViewController.swift */,
 				1696B6BD20EBCEB90024FFF7 /* MessageViewController.swift */,
 				16DB107C20DD32630003C8F5 /* FakeSplashViewController.swift */,
 				16DB107E20DD5C210003C8F5 /* SettingsViewController.swift */,
 				E23777DC2110340F0057EE29 /* PopupViewController.swift */,
 				E2E1248A219320A7007E19FB /* SideMenuVC.swift */,
+				17A545592266364000371B9C /* HelpController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -169,6 +176,8 @@
 				1672DC1320A9509300A6BEA6 /* CameraManager.swift */,
 				167DD24520C6CF10001A96E4 /* Navigator.swift */,
 				48EE2FBD212687D100172054 /* CustomDateFormatter.swift */,
+				173E7FF022665D26007E89A2 /* IHKeyboardAvoiding.swift */,
+				173E7FF222665D59007E89A2 /* IHKeyboardDismissingView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -496,7 +505,9 @@
 				1676C2FD20A18B8100D1E90D /* Extensions.swift in Sources */,
 				E22D5F902146A20D00545099 /* PersistenceService.swift in Sources */,
 				E2E1248B219320A7007E19FB /* SideMenuVC.swift in Sources */,
+				17A5455A2266364000371B9C /* HelpController.swift in Sources */,
 				E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */,
+				173E7FF122665D26007E89A2 /* IHKeyboardAvoiding.swift in Sources */,
 				16CD1DEE20A1F15900509764 /* Structs.swift in Sources */,
 				167DD24620C6CF10001A96E4 /* Navigator.swift in Sources */,
 				16BDA4EF2058E30700C9B015 /* AppDelegate.swift in Sources */,
@@ -511,7 +522,8 @@
 				1696B6BE20EBCEB90024FFF7 /* MessageViewController.swift in Sources */,
 				167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */,
 				168A26302085B3BA004582A6 /* LoginViewController.swift in Sources */,
-				1600A6A8205BAE4A003733F2 /* TableViewController.swift in Sources */,
+				1600A6A8205BAE4A003733F2 /* ReportsTableVC.swift in Sources */,
+				173E7FF322665D59007E89A2 /* IHKeyboardDismissingView.swift in Sources */,
 				E2C0F887213EBBEA004454ED /* Report.xcdatamodeld in Sources */,
 				16DB107D20DD32630003C8F5 /* FakeSplashViewController.swift in Sources */,
 				1672DC1420A9509300A6BEA6 /* CameraManager.swift in Sources */,
@@ -686,7 +698,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 446N8VS944;
+				DEVELOPMENT_TEAM = 99M24M6DW7;
 				INFOPLIST_FILE = ReportApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devapp.reportapp;
@@ -702,7 +714,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 446N8VS944;
+				DEVELOPMENT_TEAM = 99M24M6DW7;
 				INFOPLIST_FILE = ReportApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devapp.reportapp;

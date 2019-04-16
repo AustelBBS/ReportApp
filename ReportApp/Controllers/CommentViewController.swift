@@ -15,6 +15,7 @@ class CommentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        KeyboardAvoiding.avoidingView = self.view
         self.hideKeyboardOnTouch()
         mSend.layer.cornerRadius = 12.0
     }
@@ -25,7 +26,7 @@ class CommentViewController: UIViewController {
         do {
             let data = try encoder.encode(params)
             let service = WebService()
-            let token = UserDefaults.standard.string(forKey: "UserToken")!
+            let token = UserDefaults.standard.string(forKey: "cookie")!
             service.sendComments(data: data, token: token) {
                 error, done, response in
                 if error != nil {

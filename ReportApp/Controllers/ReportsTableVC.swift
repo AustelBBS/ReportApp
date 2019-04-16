@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TableViewController: UITableViewController {
+class ReportsTableVC: UITableViewController {
     var mReports : [ReportInfo]?
     let service = WebService()
     var report : ReportInfo?
@@ -29,7 +29,7 @@ class TableViewController: UITableViewController {
         
         hasLocalReports = (localReports.count > 0) ? true : false
         
-        let token = UserDefaults.standard.string(forKey: "UserToken")
+        let token = UserDefaults.standard.string(forKey: "cookie")
         var data : Data?
         service.loadReports(token: token!, method: "GET") {
                 responseData in
@@ -47,7 +47,7 @@ class TableViewController: UITableViewController {
                     print(error.localizedDescription)
                 }
             } else {
-                print("No Response");
+                self.displayAlert(msg: "Error en peticion al servidor.", title: "Error de servidor.")
                 self.mReports = NSMutableArray.init() as? [ReportInfo]
             }
         }
@@ -102,6 +102,12 @@ class TableViewController: UITableViewController {
             return cell!
         }
        
+    }
+    
+    func displayAlert(msg: String, title: String) {
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

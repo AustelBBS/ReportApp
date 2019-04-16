@@ -9,7 +9,7 @@
 
 import UIKit
 
-class MessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
   
     @IBOutlet weak var HeaderView: UIView!
     @IBOutlet weak var mComment : UITextField!
@@ -25,18 +25,13 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        KeyboardAvoiding.avoidingView = self.view
         maxWidth = view.frame.width - 40
-        report = ReportInfo(ReportId: 66, DateTime: "2018-08-30T13:23:09.9", Type: "roads", Latitude: -1231.11, Longitude: 22.111, Picture: nil, Description: "this is the description of my report asfd asdf asf asfafdsa", Solved: false)
-        messages.append(DownloadMsg(UserName: "admin", Body: "hola", DateTime: "lol", ReportId: 1))
-        //messages?.append(DownloadMsg(UserName: userName, Body: "buenas tardes como podemos ayudarte", DateTime: "lol", ReportId: 1))
-        //messages?.append(DownloadMsg(UserName: "admin", Body: "este es el cuerpo de mi mensste es el cuerpo de mi mensste es el cuerpo de mi mensste es el cuerpo de mi mensaje", DateTime: "lol", ReportId: 1))
-        //messages?.append(DownloadMsg(UserName: userName, Body: "fire and blood", DateTime: "lol", ReportId: 1))
-        //messages?.append(DownloadMsg(UserName: userName, Body: "fire and blood", DateTime: "lol", ReportId: 1))
         userName = UserDefaults.standard.string(forKey: "user")!
         self.hideKeyboardOnTouch()
         mChatLog.delegate = self
         mChatLog.dataSource = self
-        //downloadPreviousMessages()
+        downloadPreviousMessages()
         if let title = CustomDateFormatter.dateTimeFrom(isoDate: report!.DateTime!){
             self.title = title
         }
@@ -59,13 +54,15 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func downloadPreviousMessages() {
         let service = WebService()
-       
             let params : [String : String] = ["reportId" :"\(report!.ReportId!)", "datetime": report!.DateTime!]
             let decoder = JSONDecoder()
             service.getMessages(data: params, method: "GET") { (error, done, data) in
                 do {
-                    let decodedData = try decoder.decode(DownloadMsg.self, from: data!)
-                    print(decodedData)
+                    let decodedData = try decoder.decode(MessageArray.self, from: data!)
+                    self.messages = decodedData
+                    DispatchQueue.main.async {
+                        self.mtableView.reloadData()
+                    }
                 } catch {
                     print(error)
                 }
@@ -103,7 +100,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     
-    @IBAction func sendComment(_ sender: UIButton) {
+    @IBAction func sendComment(_ sender: UIButton?) {
         if let t = mComment.text{
             if (t.isEmpty){
                 return
@@ -115,14 +112,12 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
             mtableView.endUpdates()
             mtableView.scrollToRow(at: IndexPath(row: messages.count == 0 ? 0 : messages.count - 1, section: 0),at: .bottom , animated: true)
         }
-        mComment.text = ""
         let encoder = JSONEncoder()
         let params = SendMsg(reportId: report!.ReportId!, body: mComment?.text)
+        mComment.text = ""
         do {
             let data = try encoder.encode(params)
             let service = WebService()
-            let token = UserDefaults.standard.string(forKey: "UserToken")!
-            let user = UserDefaults.standard.string(forKey: "user")!
             service.sendMessage(data: data, method: "POST") {
                 error, done, response in
                 if error != nil {
@@ -130,7 +125,6 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 if done! {
                     DispatchQueue.main.async {
-                        //self.mMsgHistory?.text.append("\(user):\(self.mComment?.text! ?? "default")\n")
                         self.mComment?.text = ""
                         print(response!)
                     }
@@ -140,6 +134,11 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         } catch {
             print(error)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.sendComment(nil)
+        return true
     }
     
     func displayAlert(msg: String) {

@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = initialViewControlleripad
             self.window?.makeKeyAndVisible()
-            
             return true
         }
         

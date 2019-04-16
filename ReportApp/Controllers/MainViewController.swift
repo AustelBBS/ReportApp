@@ -22,12 +22,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
     
     @IBOutlet weak var coachPlaceholder: UIView!
     /*
-     
-     
      Toca para ver los detalles o enviar un mensaje a un administrador.
      En esta sección se muestra tu historial de reportes enviados.
-     
-     
      */
     
     var mLatitud : Double?
@@ -48,42 +44,14 @@ class MainViewController: UIViewController, UITabBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        let loggedOut = UserDefaults.standard.value(forKey: "loggedIn") as! Bool
-        if (loggedOut == false) {
-            self.dismiss(animated: true, completion: nil)
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        self.coachMarksController.stop(immediately: true)
+
     }
-    
-//    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-//        return coachMarksArray.count
-//    }
-//
-//    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-//        if let view = coachMarksArray[index].view{
-//            return coachMarksController.helper.makeCoachMark(for: view)
-//        }else{
-//            let c = coachMarksController.helper.makeCoachMark(for: self.view, pointOfInterest:   CGPoint(x: 200, y:700), cutoutPathMaker: nil)
-//             //CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
-//            return c
-//        }
-//    }
-//
-//    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-//        var coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: index != 0, withNextText: false, arrowOrientation:
-//            coachMark.arrowOrientation)
-//
-//        coachViews.bodyView.hintLabel.text = coachMarksArray[index].message
-//        coachViews.bodyView.nextLabel.text = nil
-//
-//        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
-//
-//    }
-//
+    //Prepara las propiedades visuales del controlador
     func prepareController() {
+        //KeyboardAvoiding.avoidingView = self.view
         mReportType = "lighting"
         self.hideKeyboardOnTouch()
         gpsManager = Geolocalization()
@@ -91,15 +59,16 @@ class MainViewController: UIViewController, UITabBarDelegate {
         if let localLocation = gpsManager?.requestCoords(){
             setLocation(localLocation: localLocation)
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(exit(_:)), name: NSNotification.Name(rawValue: "exit"), object: nil)
         mSend.layer.cornerRadius = 8.0
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
         descriptionInput.placeholder = "¿Que más nos quieres decir?"
     }
-    
+    //Muestra el mensaje del dia
     func showMOTD() {
         let service = WebService()
-        service.loadMOTD(token:  UserDefaults.standard.string(forKey: "UserToken")!, method: "GET") {
+        service.loadMOTD(token:  UserDefaults.standard.string(forKey: "cookie")!, method: "GET") {
             data in
             let decoder = JSONDecoder()
             do {
@@ -117,36 +86,52 @@ class MainViewController: UIViewController, UITabBarDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    //Cierra sesion
+    @objc func exit(_ notification: Notification) {
+        let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "Login") as UIViewController
+        self.present(initialViewControlleripad, animated: true, completion: nil)
+    }
+    //Envia un reporte
     @IBAction func sendReport(_ sender: UIButton) {
-        let params = Report(description: descriptionInput.text, latitude: mLatitud, longitude: mLongitud, type: mReportType)
-        let cdReport = ReportModel(context: PersistenceService.context)
-        cdReport.descripcion = descriptionInput.text
-        cdReport.latitude = mLatitud!
-        cdReport.longitude = mLongitud!
-        cdReport.type = mReportType
-        cdReport.reportImage = reportImageType.image!.pngData()
-        PersistenceService.saveContext()
-        let jsonEncoder = JSONEncoder()
-        let jsonDecoder = JSONDecoder()
-        do {
-            let data = try jsonEncoder.encode(params)
-            service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "UserToken")!) {
-                error, success, response in
-                if error != nil {
-                    print(error as Any)
-                }
-                if success! {
-                    let responseId = try! jsonDecoder.decode(ReportInfo.self, from: response!)
-                    self.uploadPhoto(id: responseId.ReportId!)
+        if !locationInput.text!.isEmpty {
+            let params = Report(description: descriptionInput.text, latitude: mLatitud, longitude: mLongitud, type: mReportType)
+            let cdReport = ReportModel(context: PersistenceService.context)
+            cdReport.descripcion = descriptionInput.text
+            cdReport.latitude = mLatitud!
+            cdReport.longitude = mLongitud!
+            cdReport.type = mReportType
+            cdReport.reportImage = reportImageType.image!.pngData()
+            PersistenceService.saveContext()
+            if let useData = UserDefaults.standard.value(forKey: "useData") {
+                if useData as! Bool {
+                    let jsonEncoder = JSONEncoder()
+                    let jsonDecoder = JSONDecoder()
+                    do {
+                        let data = try jsonEncoder.encode(params)
+                        service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "cookie")!) {
+                            error, success, response in
+                            if error != nil {
+                                print(error as Any)
+                            }
+                            if success! {
+                                let responseId = try! jsonDecoder.decode(ReportInfo.self, from: response!)
+                                self.uploadPhoto(id: responseId.ReportId!)
+                            }
+                        }
+                    } catch {
+                        print(error)
+                    }
+                } else {
+                    self.displayAlert(msg: "El reporte se enviara cuando haya una conexion disponible", title: "No hay conexion")
                 }
             }
-        } catch {
-            print(error)
+            
+        } else {
+            self.displayAlert(msg: "Toca el icono del gps para obtner la localizacion.", title: "Sin localizacion")
         }
-        
     }
-    
+    //Sube la imagen del reporte
     func uploadPhoto(id : Int) {
         service.uploadImage(image: reportImageType.image!, id: id) {
             done in
@@ -156,18 +141,19 @@ class MainViewController: UIViewController, UITabBarDelegate {
             }
         }
     }
-    
+    //Borra el contenido del reporte anterior
     func resetUI() {
         changeImage(name: "lamp")
         mReportType = "lighting"
         descriptionInput.placeholder = "¿Que más nos puedes decir?"
         locationInput.text = "Toca el gps para tener ubicación."
     }
-    
+    //Cambia la iamgen del tipo de reporte
     func changeImage (name: String) {
         reportImageType.image = UIImage(named: name)
     }
     
+    //Obtiene la localizacion del telefono
     @IBAction func getLocation(_ sender: UIButton) {
         if let location = gpsManager?.requestCoords() {
             setLocation(localLocation: location)
@@ -175,7 +161,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
             gpsManager?.requestLocation()
         }
     }
-    
+    //Muestra mensajes alerta
     func displayAlert(msg: String, title: String) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
@@ -184,12 +170,14 @@ class MainViewController: UIViewController, UITabBarDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+    //Fija la localizacion
     func  setLocation(localLocation: CLLocation) {
         locationInput.text = "Lat: \((localLocation.coordinate.latitude)) Lon: \((localLocation.coordinate.longitude))"
         mLatitud = Double(localLocation.coordinate.latitude)
         mLongitud = Double(localLocation.coordinate.longitude)
     }
     
+    //Fija la camara
     @IBAction func selectPic(_ sender: UIButton) {
         CameraManager.shared.showActionSheet(vc: self)
         CameraManager.shared.imagePickedBlock =  {
@@ -197,7 +185,8 @@ class MainViewController: UIViewController, UITabBarDelegate {
             self.reportImageType.image = image
         }
     }
-    
+    //Muestra la ayuda
+    //Libreria no compatible con swift 4.2+
     @IBAction func showHelp(_ sender: UIBarButtonItem) {
 //        self.coachMarksController.start(on: self)
     }

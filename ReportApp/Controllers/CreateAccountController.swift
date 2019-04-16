@@ -20,14 +20,14 @@ class CreateAccountController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Descomentar para hacer que el teclado detecte si tapa un textfield
+        //KeyboardAvoiding.avoidingView = self.view
         self.hideKeyboardOnTouch()
         registrarBtn.layer.cornerRadius = 20.0
         cancelarBtn.layer.cornerRadius = 20.0
         usuario.placeholder = "Nombre de usuario"
         correo.placeholder = "Correo"
         contrasena.placeholder = "Contraseña"
-        registrarBtn.addTarget(self, action: #selector(CreateAccountController.registrar), for: .touchUpInside)
-        
     }
     
     
@@ -37,29 +37,30 @@ class CreateAccountController: UIViewController {
     }
     
     
-    @objc func registrar() {
+    @IBAction func registrar(_ sender: Any) {
         let pass = contrasena.text
         let confirmPass = confirmarContrasena.text
         if usuario.text != "" && correo.text != "" && pass != "" && confirmPass != "" {
             if pass == confirmPass {
                 let service = WebService()
-                let datos = SignIn(username: usuario.text, email: correo.text, pass: contrasena.text)
+                let datos = SignIn(email: correo.text!, username: usuario.text!, pass: contrasena.text!)
                 let encoder = JSONEncoder()
                 do {
                     let datos = try encoder.encode(datos)
-                    DispatchQueue.main.async {
-                        service.register(data: datos, method: "POST") { (error, success, response) in
-                            if let error = error {
-                                fatalError(error.localizedDescription)
-                            }
-                            if success! && response != "error"{
+                    service.register(data: datos, method: "POST") { (error, success, response) in
+                        if let error = error {
+                            fatalError(error.localizedDescription)
+                        }
+                        if success! && response != "error"{
+                            DispatchQueue.main.async {
                                 self.displayAlert(title: "Ok", message: "Registro Exitoso!", style: .default, actionTitle: "Ok")
-                            } else {
-                                self.displayAlert(title: "Error", message: "Usuario o correo ya registrados!", style: .default, actionTitle: "Ok")
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.displayAlert(title: "Error", message: response!, style: .cancel, actionTitle: "Ok")
                             }
                         }
                     }
-                    
                 } catch {
                     print(error.localizedDescription)
                 }
@@ -80,7 +81,6 @@ class CreateAccountController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             case .cancel:
                 print("cancel")
-                self.navigationController?.popViewController(animated: true)
             case .destructive:
                 print("destructive")
                 self.navigationController?.popViewController(animated: true)
