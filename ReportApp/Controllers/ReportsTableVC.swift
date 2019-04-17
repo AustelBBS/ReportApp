@@ -14,6 +14,7 @@ class ReportsTableVC: UITableViewController {
     let service = WebService()
     var report : ReportInfo?
     var localReports = [ReportModel]()
+    
     var hasLocalReports = false
     
     override func viewDidLoad() {
@@ -75,7 +76,6 @@ class ReportsTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? Cell
-        
         if hasLocalReports {
             let report = localReports[indexPath.row]
             cell?.mImage?.image = UIImage(data: report.reportImage!)

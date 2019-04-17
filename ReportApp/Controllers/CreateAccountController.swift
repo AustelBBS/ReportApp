@@ -30,13 +30,13 @@ class CreateAccountController: UIViewController {
         contrasena.placeholder = "Contraseña"
     }
     
-    
+    //Action de boton cancelar
     @IBAction func cancelRegistration(_ sender: Any) {
         print("Clicked")
         self.navigationController?.popViewController(animated: true)
     }
     
-    
+    //funcion para registrar a un usuario
     @IBAction func registrar(_ sender: Any) {
         let pass = contrasena.text
         let confirmPass = confirmarContrasena.text
@@ -72,7 +72,7 @@ class CreateAccountController: UIViewController {
         }
         
     }
-    
+   //Funcion auxiliar para mostrar alertas
     func displayAlert(title: String, message: String, style: UIAlertAction.Style, actionTitle : String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: actionTitle, style: style, handler: { (action) in

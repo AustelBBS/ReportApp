@@ -5,8 +5,11 @@
 //  Created by DonauMorgen on 07/05/18.
 //  Copyright © 2018 Los Ponis. All rights reserved.
 //
+// Este archivo contiene las extensiones de agregar funcionalidad extra a algunas clases
 import UIKit
 import Foundation
+
+let imageCache = NSCache<AnyObject, AnyObject>()
 
 public extension UIViewController {
     //Closes keyboard on tap of screen
@@ -47,17 +50,27 @@ public extension UIViewController {
 
 extension UIImageView {
     func downloadFromUrl(id: Int) {
-        guard let imgURL: URL = URL(string: "http://h829kaggr-001-site1.itempurl.com/api/pictures/get/\(id)") else { return }
+        guard let imgURL: URL = URL(string: "http://uruapan.ddns.net:2020/reportapp/api/pictures/get/\(id)") else { return }
+
+        image = nil
+        
+        if let imageFromCache = imageCache.object(forKey: imgURL.absoluteString as AnyObject) as? UIImage {
+            print("Returning from cache")
+            self.image = imageFromCache
+            return
+        }
+        
         URLSession.shared.dataTask(with: imgURL) {
             data, response, error in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
+                let data = data, error == nil
                 else {return}
             DispatchQueue.main.async {
-                self.image = image
+                let imageToCache = UIImage(data: data)
+                imageCache.setObject(imageToCache!, forKey: imgURL.absoluteString as AnyObject)
+                self.image = imageToCache
             }
         }.resume()
     }

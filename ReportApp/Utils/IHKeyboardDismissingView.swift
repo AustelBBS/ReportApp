@@ -5,6 +5,8 @@
 //  Created by Fraser on 20/12/16.
 //  Copyright © 2016 IdleHandsApps. All rights reserved.
 //
+// Clase complementaria para comportamiento extra
+// Consultar https://github.com/IdleHandsApps/IHKeyboardAvoiding
 import UIKit
 
 @objc public class KeyboardDismissingView: UIView {

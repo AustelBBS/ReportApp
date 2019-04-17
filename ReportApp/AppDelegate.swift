@@ -8,15 +8,32 @@
 
 import UIKit
 import CoreData
+import Reachability
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var reach : Reachability?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        //Configuramos los bloques que indican si hay conexion
+        self.reach = Reachability.forInternetConnection()
+        self.reach!.reachableBlock = {
+            (reach:Reachability?) -> Void in
+            //Al encontrar conexion dispara una notificacion para ejecutar el metodo de envio de reportes.
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "reachable"), object: nil)
+            UserDefaults.standard.setValue(true, forKey: "Reachable")
+        }
+        //Bloque que indica que no hay conexion
+        self.reach!.unreachableBlock = {
+            (reach: Reachability?) -> Void in
+            print("UnReachable")
+            UserDefaults.standard.setValue(false, forKey: "Reachable")
+        }
+        //Comienza el servicio de notificaciones
+        self.reach!.startNotifier()
+        //Si ya se ha hecho login anteriormente se brinca la pantalla de login
         if UserDefaults.standard.bool(forKey: "loggedIn") {
             print("Skipping")
             let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

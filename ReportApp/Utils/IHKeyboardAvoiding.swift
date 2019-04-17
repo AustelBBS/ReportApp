@@ -5,6 +5,7 @@
 //  Created by Fraser on 20/12/16.
 //
 //
+// Clase externa que ayuda a mover las vistas necesarias cuando va a tapar el teclado un textfield
 import UIKit
 
 @objc public enum KeyboardAvoidingMode: Int {

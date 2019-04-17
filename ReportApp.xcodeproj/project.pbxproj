@@ -41,7 +41,6 @@
 		E23777DD2110340F0057EE29 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23777DC2110340F0057EE29 /* PopupViewController.swift */; };
 		E2C0F887213EBBEA004454ED /* Report.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2C0F885213EBBEA004454ED /* Report.xcdatamodeld */; };
 		E2E1248B219320A7007E19FB /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1248A219320A7007E19FB /* SideMenuVC.swift */; };
-		E2F240CB216E477800F35FFE /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F240CA216E477800F35FFE /* CoreDataHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,7 +107,6 @@
 		E23777DC2110340F0057EE29 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		E2C0F886213EBBEA004454ED /* Report.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Report.xcdatamodel; sourceTree = "<group>"; };
 		E2E1248A219320A7007E19FB /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
-		E2F240CA216E477800F35FFE /* CoreDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,7 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				16F26EA62099765B0074E13B /* WebService.swift */,
-				E2F240CA216E477800F35FFE /* CoreDataHandler.swift */,
 				E22D5F8F2146A20D00545099 /* PersistenceService.swift */,
 			);
 			path = Service;
@@ -517,7 +514,6 @@
 				16DB107F20DD5C210003C8F5 /* SettingsViewController.swift in Sources */,
 				48483D63212D1BE400D74ABD /* MessageCell.swift in Sources */,
 				168A26322085BDB2004582A6 /* CreateAccountController.swift in Sources */,
-				E2F240CB216E477800F35FFE /* CoreDataHandler.swift in Sources */,
 				48EE2FBE212687D100172054 /* CustomDateFormatter.swift in Sources */,
 				1696B6BE20EBCEB90024FFF7 /* MessageViewController.swift in Sources */,
 				167DEA2D20C503C5005F7591 /* CommentViewController.swift in Sources */,

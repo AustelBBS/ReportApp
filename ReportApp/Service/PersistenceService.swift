@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+//Instancia de persistencia para coredata
 class PersistenceService {
     
     private init() {}

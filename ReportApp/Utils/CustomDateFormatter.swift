@@ -5,6 +5,7 @@
 //  Created by Omar Rico on 8/16/18.
 //  Copyright © 2018 Los Ponis. All rights reserved.
 //
+// Clase que da formatos a las fechas utilizadas en los reportes
 
 import Foundation
 

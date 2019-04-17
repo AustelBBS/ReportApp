@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 class Geolocalization {
-    
+    //Clase manejadora del servicio para obtener la localizacion
     let mLocationManager = CLLocationManager()
     var mCurrentLocation : CLLocation?
     

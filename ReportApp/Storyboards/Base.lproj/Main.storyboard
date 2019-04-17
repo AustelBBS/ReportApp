@@ -753,6 +753,9 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sav-Sj-4Wm">
                                             <rect key="frame" x="9" y="0.0" width="87" height="93"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="87" id="qnc-mC-7tP"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAT-FB-8Y0">
                                             <rect key="frame" x="104" y="0.0" width="200" height="21"/>
@@ -1068,7 +1071,7 @@
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCC-Wr-wr0">
-                                <rect key="frame" x="8" y="125" width="264.5" height="21"/>
+                                <rect key="frame" x="8" y="124.5" width="264.5" height="20.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Uso de datos móviles">
                                         <attributes>
@@ -1080,7 +1083,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-2L-I50">
-                                <rect key="frame" x="8" y="146" width="329" height="50"/>
+                                <rect key="frame" x="8" y="145" width="329" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="hl0-7t-Ww2"/>
                                 </constraints>
@@ -1096,7 +1099,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-DR-89f">
-                                <rect key="frame" x="8" y="96" width="157" height="21"/>
+                                <rect key="frame" x="8" y="96" width="157" height="20.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="General">
                                         <attributes>
@@ -1107,25 +1110,25 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf9-d8-Hbj">
-                                <rect key="frame" x="102" y="204" width="241" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kf9-d8-Hbj">
+                                <rect key="frame" x="8" y="203" width="248" height="21"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Número de reportes a guardar">
                                         <attributes>
                                             <font key="NSFont" size="17" name=".AppleSystemUIFontEmphasized"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCO-1u-QPt">
-                                <rect key="frame" x="8" y="225" width="398" height="50"/>
+                                <rect key="frame" x="8" y="241" width="398" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="V98-Rp-D1m"/>
                                 </constraints>
                                 <attributedString key="attributedText">
-                                    <fragment content="Sincronizar reportes y sus fotos incluso cuando no esté conectado  a una red Wi-Fi">
+                                    <fragment content="Limitar el numero de reportes a mostrar.">
                                         <attributes>
                                             <color key="NSColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <font key="NSFont" size="12" name=".AppleSystemUIFontEmphasized"/>
@@ -1135,9 +1138,19 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjM-gV-yhz">
+                                <rect key="frame" x="334" y="193" width="72" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dDt-A9-Ra1"/>
+                                    <constraint firstAttribute="width" constant="72" id="fRR-kV-JyB"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YCO-1u-QPt" firstAttribute="top" secondItem="sjM-gV-yhz" secondAttribute="bottom" constant="8" id="2I3-re-Hhl"/>
+                            <constraint firstItem="YCO-1u-QPt" firstAttribute="top" secondItem="kf9-d8-Hbj" secondAttribute="bottom" constant="17" id="5d9-s8-9Ku"/>
+                            <constraint firstItem="sjM-gV-yhz" firstAttribute="leading" secondItem="kf9-d8-Hbj" secondAttribute="trailing" constant="78" id="AOj-zb-H2r"/>
                             <constraint firstAttribute="trailing" secondItem="YCO-1u-QPt" secondAttribute="trailing" constant="8" id="Fql-ar-47v"/>
                             <constraint firstItem="FCC-Wr-wr0" firstAttribute="top" secondItem="24Z-DR-89f" secondAttribute="bottom" constant="8" id="Hv0-OX-xfw"/>
                             <constraint firstItem="24Z-DR-89f" firstAttribute="top" secondItem="3h7-o6-CXI" secondAttribute="top" constant="8" id="Ij1-eC-cx7"/>
@@ -1145,26 +1158,28 @@
                             <constraint firstItem="YCO-1u-QPt" firstAttribute="leading" secondItem="3h7-o6-CXI" secondAttribute="leading" constant="8" id="QeA-ux-B7B"/>
                             <constraint firstAttribute="trailing" secondItem="uhA-h7-MpM" secondAttribute="trailing" constant="8" id="Rf1-ml-qbU"/>
                             <constraint firstItem="kf9-d8-Hbj" firstAttribute="top" secondItem="bzi-2L-I50" secondAttribute="bottom" constant="8" id="Tgz-Xw-UzV"/>
+                            <constraint firstItem="sjM-gV-yhz" firstAttribute="top" secondItem="uhA-h7-MpM" secondAttribute="bottom" constant="37" id="VP1-h2-hGK"/>
                             <constraint firstItem="uhA-h7-MpM" firstAttribute="leading" secondItem="FCC-Wr-wr0" secondAttribute="trailing" constant="84.5" id="W0g-uc-L5F"/>
+                            <constraint firstItem="3h7-o6-CXI" firstAttribute="trailing" secondItem="sjM-gV-yhz" secondAttribute="trailing" constant="8" id="cDJ-hh-3Kr"/>
                             <constraint firstItem="bzi-2L-I50" firstAttribute="top" secondItem="FCC-Wr-wr0" secondAttribute="bottom" id="gKD-kF-8xK"/>
                             <constraint firstItem="FCC-Wr-wr0" firstAttribute="leading" secondItem="3h7-o6-CXI" secondAttribute="leading" constant="8" id="gdo-e3-Udm"/>
                             <constraint firstItem="24Z-DR-89f" firstAttribute="leading" secondItem="3h7-o6-CXI" secondAttribute="leading" constant="8" id="hdi-6U-SE5"/>
                             <constraint firstItem="bzi-2L-I50" firstAttribute="leading" secondItem="3h7-o6-CXI" secondAttribute="leading" constant="8" id="m0I-Pa-k4C"/>
                             <constraint firstItem="uhA-h7-MpM" firstAttribute="top" secondItem="3h7-o6-CXI" secondAttribute="top" constant="37" id="n22-mH-19E"/>
-                            <constraint firstItem="YCO-1u-QPt" firstAttribute="top" secondItem="kf9-d8-Hbj" secondAttribute="bottom" id="qLF-fG-Xnn"/>
                             <constraint firstItem="uhA-h7-MpM" firstAttribute="leading" secondItem="bzi-2L-I50" secondAttribute="trailing" constant="20" id="rg9-dT-qvp"/>
-                            <constraint firstAttribute="trailing" secondItem="kf9-d8-Hbj" secondAttribute="trailing" constant="71" id="rhd-iM-WUo"/>
                             <constraint firstItem="kf9-d8-Hbj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3h7-o6-CXI" secondAttribute="leading" id="yXl-rU-r8G"/>
+                            <constraint firstItem="kf9-d8-Hbj" firstAttribute="leading" secondItem="3h7-o6-CXI" secondAttribute="leading" constant="8" id="zfy-xL-c8x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3h7-o6-CXI"/>
                     </view>
                     <connections>
-                        <outlet property="hideMOTDSwitch" destination="uhA-h7-MpM" id="joW-jW-32I"/>
+                        <outlet property="picker" destination="sjM-gV-yhz" id="Ino-I4-Q3b"/>
+                        <outlet property="useData" destination="uhA-h7-MpM" id="joW-jW-32I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m86-xe-xIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3400" y="743"/>
+            <point key="canvasLocation" x="3400.0000000000005" y="742.63392857142856"/>
         </scene>
         <!--Basura-->
         <scene sceneID="i56-Oc-CXA">

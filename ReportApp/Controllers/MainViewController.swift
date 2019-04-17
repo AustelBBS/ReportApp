@@ -60,6 +60,7 @@ class MainViewController: UIViewController, UITabBarDelegate {
             setLocation(localLocation: localLocation)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(exit(_:)), name: NSNotification.Name(rawValue: "exit"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendSavedReports), name: NSNotification.Name(rawValue: "reachable"), object: nil)
         mSend.layer.cornerRadius = 8.0
         descriptionInput.isEditable = true
         descriptionInput.isUserInteractionEnabled = true
@@ -88,12 +89,46 @@ class MainViewController: UIViewController, UITabBarDelegate {
     }
     //Cierra sesion
     @objc func exit(_ notification: Notification) {
+        UserDefaults.standard.setValue(Array<ReportModel>(), forKey: "unsent")
         let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewController(withIdentifier: "Login") as UIViewController
         self.present(initialViewControlleripad, animated: true, completion: nil)
     }
-    //Envia un reporte
+    //Envia
+    @objc func sendSavedReports(_ notification: Notification) {
+        let reportsArray : Array<ReportModel> = UserDefaults.standard.value(forKey: "unsent") as! Array<ReportModel>
+        for report in reportsArray {
+            let params = Report(description: report.description, latitude: report.latitude, longitude: report.longitude, type: report.type)
+            if let imageData = report.reportImage {
+                self.send(params, image: imageData)
+            }
+        }
+        UserDefaults.standard.setValue( Array<ReportModel>(), forKey: "unsent")
+    }
+    
+    func send(_ json: Report, image: Data) {
+        let encoder = JSONEncoder()
+        let decoder = JSONDecoder()
+        do {
+            let data = try encoder.encode(json)
+            service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "cookie")!) {
+                error, success, response in
+                if error != nil {
+                    print(error as Any)
+                }
+                if success != nil {
+                    let responseId = try! decoder.decode(ReportInfo.self, from: response!)
+                    self.uploadPhoto(id: responseId.ReportId!, image: image)
+                    print("Uploaded Report")
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
+    //Envia un reporte al presionar el boton
     @IBAction func sendReport(_ sender: UIButton) {
+        let useData = UserDefaults.standard.bool(forKey: "useData")
         if !locationInput.text!.isEmpty {
             let params = Report(description: descriptionInput.text, latitude: mLatitud, longitude: mLongitud, type: mReportType)
             let cdReport = ReportModel(context: PersistenceService.context)
@@ -103,27 +138,33 @@ class MainViewController: UIViewController, UITabBarDelegate {
             cdReport.type = mReportType
             cdReport.reportImage = reportImageType.image!.pngData()
             PersistenceService.saveContext()
-            if let useData = UserDefaults.standard.value(forKey: "useData") {
-                if useData as! Bool {
-                    let jsonEncoder = JSONEncoder()
-                    let jsonDecoder = JSONDecoder()
-                    do {
-                        let data = try jsonEncoder.encode(params)
-                        service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "cookie")!) {
-                            error, success, response in
-                            if error != nil {
-                                print(error as Any)
-                            }
-                            if success! {
-                                let responseId = try! jsonDecoder.decode(ReportInfo.self, from: response!)
-                                self.uploadPhoto(id: responseId.ReportId!)
-                            }
+            if useData {
+                let jsonEncoder = JSONEncoder()
+                let jsonDecoder = JSONDecoder()
+                do {
+                    let data = try jsonEncoder.encode(params)
+                    service.sendPost(data: data, token: UserDefaults.standard.string(forKey: "cookie")!) {
+                        error, success, response in
+                        if error != nil {
+                            print(error as Any)
                         }
-                    } catch {
-                        print(error)
+                        if success! {
+                            let responseId = try! jsonDecoder.decode(ReportInfo.self, from: response!)
+                            self.uploadPhoto(id: responseId.ReportId!)
+                        }
                     }
+                } catch {
+                    print(error)
+                }
+            } else {
+                var reportsArray : Array<ReportModel> = UserDefaults.standard.value(forKey: "unsent") as? Array<ReportModel> ?? Array.init()
+                let reportLimit = UserDefaults.standard.integer(forKey: "savedReports")
+                if reportsArray.count+1 > reportLimit {
+                    self.displayAlert(msg: "Se ha llegado al limite de reportes guardados.\nLimite: \(reportLimit)", title: "Limite alcanzado")
                 } else {
-                    self.displayAlert(msg: "El reporte se enviara cuando haya una conexion disponible", title: "No hay conexion")
+                    reportsArray.append(cdReport)
+                    UserDefaults.standard.setValue(reportsArray, forKey: "unsent")
+                    self.displayAlert(msg: "El reporte se ha guardado en memoria, se enviara cuando haya conexion", title: "No hay conexion")
                 }
             }
             
@@ -138,6 +179,19 @@ class MainViewController: UIViewController, UITabBarDelegate {
             if done! {
                 self.displayAlert(msg: "Reporte enviado!", title: "Estado")
                 self.resetUI()
+            }
+        }
+    }
+    //Sube la imagen de un reporte guardado
+    func uploadPhoto(id : Int, image: Data) {
+        let reportImage = UIImage.init(data: image)
+        if let img = reportImage {
+            service.uploadImage(image: img, id: id) {
+                done in
+                if done! {
+                    self.displayAlert(msg: "Reporte enviado!", title: "Estado")
+                    self.resetUI()
+                }
             }
         }
     }
